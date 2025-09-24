@@ -1,7 +1,7 @@
 package com.architect.archexp.item.custom;
 
 import com.architect.archexp.TheArchitectExperiment;
-import com.architect.archexp.item.ModComponents;
+import com.architect.archexp.util.ModComponents;
 import com.architect.archexp.sound.ModSounds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
@@ -26,8 +26,7 @@ public class MightAmuletItem extends Item {
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         super.inventoryTick(stack, world, entity, slot, selected);
-        boolean shouldTick = stack.get(ModComponents.WAIT_FOR_DELAY);
-        while (shouldTick && entity instanceof PlayerEntity) {
+        while (Boolean.TRUE.equals(stack.get(ModComponents.WAIT_FOR_DELAY)) && entity instanceof PlayerEntity) {
             int lastVal = stack.get(ModComponents.ITEM_DELAY);
             stack.set(ModComponents.ITEM_DELAY, lastVal + 1 );
 
@@ -41,7 +40,6 @@ public class MightAmuletItem extends Item {
             doEffects(world, (PlayerEntity) entity);
             stack.set(ModComponents.ITEM_DELAY, 0);
         }
-
     }
 
     @Override

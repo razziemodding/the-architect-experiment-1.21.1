@@ -1,9 +1,13 @@
 package com.architect.archexp.item.custom;
 
+import com.architect.archexp.sound.ModSounds;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Vec3d;
@@ -26,6 +30,19 @@ public class BoltAmuletItem extends Item {
         user.setVelocity(vel.x, vel.y, vel.z);
         user.velocityModified = true;
         user.getItemCooldownManager().set(this, 40);
+
+        if (!world.isClient) {
+            ServerWorld server = (ServerWorld) world;
+
+            server.spawnParticles(ParticleTypes.ITEM_COBWEB,
+                    user.getX(), user.getY(), user.getZ(), 5, 0.5, 0.5, 0.5, 100);
+            server.spawnParticles(ParticleTypes.DUST_PLUME,
+                    user.getX(), user.getY(), user.getZ(), 10, 0.5, 0.5, 0.5, 0.01);
+            server.spawnParticles(ParticleTypes.SMALL_GUST,
+                    user.getX(), user.getY(), user.getZ(), 5, 0.5, 0.5, 0.5, 10);
+
+            world.playSound(null, user.getBlockPos(), ModSounds.BOLT_AMULET_USE, SoundCategory.PLAYERS, 1f, 1f);
+        }
         return TypedActionResult.success(user.getEquippedStack(EquipmentSlot.OFFHAND));
     }
 }

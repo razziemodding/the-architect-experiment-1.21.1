@@ -17,8 +17,8 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class GlareAmuletItem extends Item {
-    public GlareAmuletItem(Settings settings) {
+public class WindAmuletItem extends Item {
+    public WindAmuletItem(Settings settings) {
         super(settings);
     }
 

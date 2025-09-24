@@ -15,6 +15,7 @@ public class ModSounds {
     public static final SoundEvent MIGHT_AMULET_USE = registerSound("might_amulet_use");
     public static final SoundEvent SOUL_AMULET_USE = registerSound("soul_amulet_use");
     public static final SoundEvent WIND_AMULET_USE = registerSound("wind_amulet_use");
+    public static final SoundEvent BOLT_AMULET_USE = registerSound("bolt_amulet_use");
 
 
     private static SoundEvent registerSound(String id) {

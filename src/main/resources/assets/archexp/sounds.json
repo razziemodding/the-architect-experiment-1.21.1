@@ -16,5 +16,11 @@
     "sounds": [
       "archexp:wind_amulet_use"
     ]
+  },
+  "bolt_amulet_use": {
+    "subtitle": "sound.archexp.bolt_amulet_use",
+    "sounds": [
+      "archexp:bolt_amulet_use"
+    ]
   }
 }

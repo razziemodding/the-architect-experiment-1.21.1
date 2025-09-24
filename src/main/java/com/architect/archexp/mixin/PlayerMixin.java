@@ -1,7 +1,7 @@
 package com.architect.archexp.mixin;
 
 import com.architect.archexp.TheArchitectExperiment;
-import com.architect.archexp.item.ModComponents;
+import com.architect.archexp.util.ModComponents;
 import com.architect.archexp.item.ModItems;
 import com.architect.archexp.util.ModTags;
 import net.minecraft.entity.EntityType;

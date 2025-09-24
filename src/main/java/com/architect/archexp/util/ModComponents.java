@@ -1,4 +1,4 @@
-package com.architect.archexp.item;
+package com.architect.archexp.util;
 
 import com.architect.archexp.TheArchitectExperiment;
 import com.mojang.serialization.Codec;

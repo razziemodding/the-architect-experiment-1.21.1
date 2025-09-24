@@ -1,7 +1,7 @@
 package com.architect.archexp.item.custom;
 
 import com.architect.archexp.TheArchitectExperiment;
-import com.architect.archexp.item.ModComponents;
+import com.architect.archexp.util.ModComponents;
 import com.architect.archexp.sound.ModSounds;
 import com.mojang.datafixers.util.Pair;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;

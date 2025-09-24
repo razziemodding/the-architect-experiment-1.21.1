@@ -2,6 +2,7 @@ package com.architect.archexp.item;
 
 import com.architect.archexp.TheArchitectExperiment;
 import com.architect.archexp.item.custom.*;
+import com.architect.archexp.util.ModComponents;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -21,7 +22,7 @@ public class ModItems {
             .maxCount(1)
             .component(ModComponents.SOUL_AMULET_ACTIVE, false)));
     public static final Item BOLT_AMULET = registerItem("bolt_amulet", new BoltAmuletItem(new Item.Settings().rarity(Rarity.RARE).maxCount(1)));
-    public static final Item WIND_AMULET = registerItem("wind_amulet", new GlareAmuletItem(new Item.Settings().rarity(Rarity.RARE).maxCount(1)));
+    public static final Item WIND_AMULET = registerItem("wind_amulet", new WindAmuletItem(new Item.Settings().rarity(Rarity.RARE).maxCount(1)));
 
     //weapons
 

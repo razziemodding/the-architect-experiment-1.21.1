@@ -1,6 +1,6 @@
 package com.architect.archexp;
 
-import com.architect.archexp.item.ModComponents;
+import com.architect.archexp.util.ModComponents;
 import com.architect.archexp.item.ModItems;
 import com.architect.archexp.sound.ModSounds;
 import net.fabricmc.api.ModInitializer;
@@ -14,6 +14,9 @@ public class TheArchitectExperiment implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		/*
+		todo: uhhh idk put stuff here when you think of it and just say it was from you
+		 */
 		ModItems.registerModItems();
 		ModSounds.registerModSounds();
 		ModComponents.registerComponents();
