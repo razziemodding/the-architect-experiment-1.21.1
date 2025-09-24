@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "archexp",
+	"version": "1.0.3",
+	"name": "The Architect Experiment",
+	"description": "The Architect gives you... joy.",
+	"authors": [
+		"The Architect",
+		"hv yow pends, pga iewq eap.",
+		"'Vision'"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "Why would you repurpose the Architect's finest work?",
+	"icon": "assets/archexp/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.architect.archexp.TheArchitectExperiment"
+		],
+		"fabric-datagen": [
+			"com.architect.archexp.TheArchitectExperimentDataGenerator"
+		]
+	},
+	"mixins": [
+		"archexp.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.17.2",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

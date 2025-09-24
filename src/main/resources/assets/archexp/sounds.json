@@ -1,0 +1,20 @@
+{
+  "might_amulet_use": {
+    "subtitle": "sound.archexp.might_amulet_use",
+    "sounds": [
+      "archexp:might_amulet_use"
+    ]
+  },
+  "soul_amulet_use": {
+    "subtitle": "sound.archexp.soul_amulet_use",
+    "sounds": [
+      "archexp:soul_amulet_use"
+    ]
+  },
+  "wind_amulet_use": {
+    "subtitle": "sound.archexp.wind_amulet_use",
+    "sounds": [
+      "archexp:wind_amulet_use"
+    ]
+  }
+}
