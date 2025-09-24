@@ -16,7 +16,6 @@ public class TheArchitectExperiment implements ModInitializer {
 	public void onInitialize() {
 		/*
 		todo: uhhh idk put stuff here when you think of it and just say it was from you
-		lalalalaalalalallaalalalallalalal
 		 */
 		ModItems.registerModItems();
 		ModSounds.registerModSounds();
