@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "archexp:block/marketplace_bottom",
+    "east": "archexp:block/marketplace_side",
+    "north": "archexp:block/marketplace_side",
+    "particle": "archexp:block/marketplace_side",
+    "south": "archexp:block/marketplace_side",
+    "up": "archexp:block/marketplace_top",
+    "west": "archexp:block/marketplace_side"
+  }
+}

@@ -32,6 +32,6 @@ public class ModItems {
     }
 
     public static void registerModItems() {
-        TheArchitectExperiment.LOGGER.info("The Architect gives you items.");
+        TheArchitectExperiment.LOGGER.info("The Architect gives you material.");
     }
 }

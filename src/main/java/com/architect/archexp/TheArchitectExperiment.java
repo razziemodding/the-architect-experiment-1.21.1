@@ -1,5 +1,8 @@
 package com.architect.archexp;
 
+import com.architect.archexp.block.ModBlocks;
+import com.architect.archexp.block.entity.ModBlockEntities;
+import com.architect.archexp.screen.ModScreens;
 import com.architect.archexp.util.ModComponents;
 import com.architect.archexp.item.ModItems;
 import com.architect.archexp.sound.ModSounds;
@@ -20,5 +23,8 @@ public class TheArchitectExperiment implements ModInitializer {
 		ModItems.registerModItems();
 		ModSounds.registerModSounds();
 		ModComponents.registerComponents();
+		ModBlocks.registerModBlocks();
+		ModBlockEntities.registerBlockEntities();
+		ModScreens.registerScreenHandlers();
 	}
 }
