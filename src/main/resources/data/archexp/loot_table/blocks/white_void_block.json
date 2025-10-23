@@ -6,9 +6,12 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "archexp:white_void_block",
-          "weight": 1,
-          "conditions": []
+          "name": "archexp:white_void_block"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
         }
       ]
     }
