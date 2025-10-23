@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "archexp:block/void_block"
+    }
+  }
+}

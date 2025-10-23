@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "Y": {
+      "item": "minecraft:yellow_wool"
+    },
+    "D": {
+      "item": "minecraft:diamond"
+    }
+  },
+  "pattern": [
+    "YYY",
+    "YDY",
+    "YYY"
+  ],
+  "result": {
+    "count": 1,
+    "id": "archexp:steam_happy"
+  }
+}

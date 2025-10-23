@@ -1,0 +1,21 @@
+{
+  "type": "archexp:void_t",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "biome": "archexp:void",
+      "lakes": false,
+      "features": false,
+      "layers": [
+        {
+          "height": 1,
+          "block": "archexp:omni_void_block"
+        },
+        {
+          "height": 5,
+          "block": "archexp:void_block"
+        }
+      ]
+    }
+  }
+}

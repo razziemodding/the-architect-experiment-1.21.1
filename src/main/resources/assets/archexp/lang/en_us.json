@@ -4,6 +4,9 @@
   "item.archexp.soul_amulet": "Amulet of Souls",
   "item.archexp.bolt_amulet": "Amulet of Bolting",
   "item.archexp.wind_amulet": "Amulet of the Gale",
-
-  "block.archexp.marketplace": "Marketplace"
+  "item.archexp.steam_happy": "Steam Happy",
+  "block.archexp.marketplace": "Marketplace",
+  "block.archexp.omni_void_block": "Unbreakable Void Block",
+  "block.archexp.void_block": "Void Block",
+  "block.archexp.white_void_block": "White Void Block"
 }
