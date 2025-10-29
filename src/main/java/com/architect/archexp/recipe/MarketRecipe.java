@@ -1,11 +1,8 @@
 package com.architect.archexp.recipe;
 
-import com.google.gson.JsonElement;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.recipe.Ingredient;
@@ -14,7 +11,6 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.world.World;
-import org.spongepowered.include.com.google.gson.JsonObject;
 
 public record MarketRecipe(Ingredient input, Ingredient currency, ItemStack result) implements Recipe<MarketRecipeInput> {
 

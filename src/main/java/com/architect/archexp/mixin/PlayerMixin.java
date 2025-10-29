@@ -6,9 +6,7 @@ import com.architect.archexp.item.ModItems;
 import com.architect.archexp.util.ModTags;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,7 +21,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerMixin extends LivingEntity {
-    @Shadow public abstract PlayerInventory getInventory();
 
     @Shadow public abstract ItemStack getEquippedStack(EquipmentSlot slot);
 

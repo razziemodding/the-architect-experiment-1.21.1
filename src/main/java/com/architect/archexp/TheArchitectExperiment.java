@@ -6,19 +6,12 @@ import com.architect.archexp.screen.ModScreens;
 import com.architect.archexp.util.ModComponents;
 import com.architect.archexp.item.ModItems;
 import com.architect.archexp.sound.ModSounds;
-import com.architect.archexp.util.ModTags;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.networking.v1.ServerLoginConnectionEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.world.event.GameEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Arrays;
 import java.util.Map;
 
 public class TheArchitectExperiment implements ModInitializer {
@@ -33,6 +26,7 @@ public class TheArchitectExperiment implements ModInitializer {
 		/*
 		todo: uhhh idk put stuff here when you think of it and just say it was from you
 			make building item akin to health amulet
+			finsih,. amarektpalce.
 
 
 		todo: weapons -
