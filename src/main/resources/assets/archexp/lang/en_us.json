@@ -11,5 +11,10 @@
   "block.archexp.void_block": "Void Block",
   "block.archexp.white_void_block": "White Void Block",
 
+  "sound.archexp.bolt_amulet_use": "Bolt Amulet used",
+  "sound.archexp.might_amulet_use": "Might Amulet used",
+  "sound.archexp.soul_amulet_use": "Soul Amulet used",
+  "sound.archexp.wind_amulet_use": "Wind Amulet used",
+
   "container.archexp.market": "Marketplace"
 }

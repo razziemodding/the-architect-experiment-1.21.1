@@ -33,6 +33,7 @@ public class BoltAmuletItem extends Item {
 
         if (!world.isClient) {
             ServerWorld server = (ServerWorld) world;
+            world.playSound(null, user.getBlockPos(), ModSounds.BOLT_AMULET_USE, SoundCategory.PLAYERS, 1f, 1f);
 
             server.spawnParticles(ParticleTypes.ITEM_COBWEB,
                     user.getX(), user.getY(), user.getZ(), 5, 0.5, 0.5, 0.5, 100);
@@ -40,8 +41,6 @@ public class BoltAmuletItem extends Item {
                     user.getX(), user.getY(), user.getZ(), 10, 0.5, 0.5, 0.5, 0.01);
             server.spawnParticles(ParticleTypes.SMALL_GUST,
                     user.getX(), user.getY(), user.getZ(), 5, 0.5, 0.5, 0.5, 10);
-
-            world.playSound(null, user.getBlockPos(), ModSounds.BOLT_AMULET_USE, SoundCategory.PLAYERS, 1f, 1f);
         }
         return TypedActionResult.success(user.getEquippedStack(EquipmentSlot.OFFHAND));
     }

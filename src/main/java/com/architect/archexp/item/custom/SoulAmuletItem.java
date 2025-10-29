@@ -57,7 +57,7 @@ public class SoulAmuletItem extends Item {
                     }
                 }
             }
-            user.getItemCooldownManager().set(handItem.getItem(), 1); //45 second cooldown
+            user.getItemCooldownManager().set(handItem.getItem(), 360); //45 second cooldown
             return TypedActionResult.success(handItem);
         } else {
             //TheArchitectExperiment.LOGGER.info("false");
