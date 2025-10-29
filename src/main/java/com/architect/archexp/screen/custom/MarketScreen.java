@@ -9,7 +9,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class MarketScreen extends HandledScreen<MarketScreenHandler> {
-    public static final Identifier TEXTURE = Identifier.of(TheArchitectExperiment.MOD_ID, "textures/gui/marketplace/marketplace_gui.png");
+    public static final Identifier TEXTURE = Identifier.of(TheArchitectExperiment.MOD_ID, "textures/gui/marketplace/market_gui.png");
 
     public MarketScreen(MarketScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -20,9 +20,7 @@ public class MarketScreen extends HandledScreen<MarketScreenHandler> {
         RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
         RenderSystem.setShaderTexture(0, TEXTURE);
 
-        int x = (width - backgroundWidth) / 2;
-        int y = (height - backgroundHeight) / 2;
+        context.drawTexture(TEXTURE, this.x, this.y, 0, 0, backgroundWidth, backgroundHeight);
 
-        context.drawTexture(TEXTURE, x, y, 0, 0, backgroundWidth, backgroundHeight);
     }
 }

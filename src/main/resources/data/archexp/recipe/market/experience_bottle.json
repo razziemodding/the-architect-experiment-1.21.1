@@ -1,0 +1,12 @@
+{
+  "type": "archexp:market",
+  "input": {
+    "item": "minecraft:glass_bottle"
+  },
+  "currency": {
+    "item": "minecraft:diamond"
+  },
+  "result": {
+    "id": "minecraft:experience_bottle"
+  }
+}

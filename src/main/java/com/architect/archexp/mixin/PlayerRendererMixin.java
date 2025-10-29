@@ -21,9 +21,9 @@ public class PlayerRendererMixin {
     private void hideArmor(MatrixStack matrices, VertexConsumerProvider vertexConsumers,
                            int light, AbstractClientPlayerEntity player,
                            ModelPart arm, ModelPart sleeve, CallbackInfo ci) {
-        TheArchitectExperiment.LOGGER.info("render mixin");
+        //TheArchitectExperiment.LOGGER.info("render mixin");
         if (player.getInventory().contains(ModTags.Items.SOUL) ) {
-            TheArchitectExperiment.LOGGER.info("render item");
+            //TheArchitectExperiment.LOGGER.info("render item");
             ItemStack stack = null;
             for (int s = 0; 0 <= player.getInventory().size(); s++) {
                 stack = player.getInventory().getStack(s);

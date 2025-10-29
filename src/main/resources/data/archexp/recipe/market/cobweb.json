@@ -1,0 +1,12 @@
+{
+  "type": "archexp:market",
+  "input": {
+    "item": "minecraft:string"
+  },
+  "currency": {
+    "item": "minecraft:diamond"
+  },
+  "result": {
+    "id": "minecraft:cobweb"
+  }
+}

@@ -25,11 +25,11 @@ public class BoltAmuletItem extends Item {
         }
 
         Vec3d lookD = user.getRotationVector();
-        Vec3d vel = new Vec3d(lookD.x * 1.5, 0.1, lookD.z * 1.5); //make go 7 blocks
+        Vec3d vel = new Vec3d(lookD.x * 1.1, 0.005, lookD.z * 1.1); //make go 7 blocks
 
         user.setVelocity(vel.x, vel.y, vel.z);
         user.velocityModified = true;
-        user.getItemCooldownManager().set(this, 40);
+        user.getItemCooldownManager().set(this, 120); //increase cd
 
         if (!world.isClient) {
             ServerWorld server = (ServerWorld) world;

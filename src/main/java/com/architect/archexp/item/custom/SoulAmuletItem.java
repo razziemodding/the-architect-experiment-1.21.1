@@ -19,6 +19,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public class SoulAmuletItem extends Item {
         ItemStack handItem = user.getEquippedStack(EquipmentSlot.OFFHAND);
         ItemStack emp = new ItemStack(Items.AIR);
         if (Objects.equals(handItem.get(ModComponents.SOUL_AMULET_ACTIVE), true)) {
-            TheArchitectExperiment.LOGGER.info("active");
+            //TheArchitectExperiment.LOGGER.info("active");
             user.removeStatusEffect(StatusEffects.INVISIBILITY);
             user.removeStatusEffect(StatusEffects.SPEED);
             user.removeStatusEffect(StatusEffects.REGENERATION);
@@ -45,7 +46,7 @@ public class SoulAmuletItem extends Item {
             handItem.set(ModComponents.SOUL_AMULET_ACTIVE, false);
             if (!world.isClient) {
                 for (ServerPlayerEntity tracking : PlayerLookup.tracking(user)) {
-                    TheArchitectExperiment.LOGGER.info("la");
+                    //TheArchitectExperiment.LOGGER.info("la");
                     if (tracking != user) {
                         tracking.networkHandler.sendPacket(
                                 new EntityEquipmentUpdateS2CPacket(user.getId(),
@@ -56,15 +57,20 @@ public class SoulAmuletItem extends Item {
                     }
                 }
             }
-            user.getItemCooldownManager().set(handItem.getItem(), 600);
+            user.getItemCooldownManager().set(handItem.getItem(), 1); //45 second cooldown
             return TypedActionResult.success(handItem);
         } else {
-            TheArchitectExperiment.LOGGER.info("false");
+            //TheArchitectExperiment.LOGGER.info("false");
             if (!world.isClient) {
-                TheArchitectExperiment.LOGGER.info("server");
+                //TheArchitectExperiment.LOGGER.info("server");
+                Vec3d lookD = user.getRotationVector();
+                Vec3d vel = new Vec3d(lookD.x * 1.5, 0.1, lookD.z * 1.5);
+
+                user.setVelocity(vel.x, vel.y, vel.z);
+                user.velocityModified = true;
 
                 for (ServerPlayerEntity tracking : PlayerLookup.tracking(user)) {
-                    TheArchitectExperiment.LOGGER.info("la");
+                    //TheArchitectExperiment.LOGGER.info("la");
                     if (tracking != user) {
                         tracking.networkHandler.sendPacket(
                                 new EntityEquipmentUpdateS2CPacket(user.getId(),

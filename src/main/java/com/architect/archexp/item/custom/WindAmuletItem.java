@@ -25,7 +25,7 @@ public class WindAmuletItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) { //
         if (hand.equals(Hand.OFF_HAND)) {
-            user.getItemCooldownManager().set(this, 400);
+            user.getItemCooldownManager().set(this, 200); //25 second coodlwon
 
             if (!world.isClient) {
                 world.playSound(null, user.getBlockPos(), ModSounds.WIND_AMULET_USE, SoundCategory.PLAYERS, 1f, 1f);

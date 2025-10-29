@@ -14,7 +14,7 @@ import net.minecraft.util.Identifier;
 
 public class ModBlocks {
 
-    public static final Block MARKETPLACE_BLOCK = registerBlock("marketplace", new MarketBlock(AbstractBlock.Settings.create()), true);
+    public static final Block MARKETPLACE_BLOCK = registerBlock("marketplace", new MarketBlock(AbstractBlock.Settings.create().hardness(15f).strength(-1.0F, 3600000.0F)), true);
 
     public static final Block OMNI_VOID_BLOCK = registerBlock("omni_void_block",
             new Block(AbstractBlock.Settings
