@@ -29,7 +29,14 @@ public class ModBlocks {
                     .allowsSpawning(Blocks::always)
             ), true
     );
-
+    public static final Block GRAY_VOID_BLOCK = registerBlock("gray_void_block",
+            new Block(AbstractBlock.Settings
+                    .create()
+                    .strength(2.5F, 3.5F)
+                    .requiresTool()
+                    .allowsSpawning(Blocks::always)
+            ), true
+    );
     public static final Block WHITE_VOID_BLOCK = registerBlock("white_void_block",
             new Block(AbstractBlock.Settings
                     .create()
@@ -38,7 +45,46 @@ public class ModBlocks {
                     .luminance(state -> 15)
             ), true
     );
-
+    public static final Block BLUE_VOID_BLOCK = registerBlock("blue_void_block",
+            new Block(AbstractBlock.Settings
+                    .create()
+                    .strength(4.0F, 6.0F)
+                    .requiresTool()
+                    .luminance(state -> 15)
+            ), true
+    );
+    public static final Block ORANGE_VOID_BLOCK = registerBlock("orange_void_block",
+            new Block(AbstractBlock.Settings
+                    .create()
+                    .strength(4.0F, 6.0F)
+                    .requiresTool()
+                    .luminance(state -> 15)
+            ), true
+    );
+    public static final Block PURPLE_VOID_BLOCK = registerBlock("purple_void_block",
+            new Block(AbstractBlock.Settings
+                    .create()
+                    .strength(4.0F, 6.0F)
+                    .requiresTool()
+                    .luminance(state -> 15)
+            ), true
+    );
+    public static final Block RED_VOID_BLOCK = registerBlock("red_void_block",
+            new Block(AbstractBlock.Settings
+                    .create()
+                    .strength(4.0F, 6.0F)
+                    .requiresTool()
+                    .luminance(state -> 15)
+            ), true
+    );
+    public static final Block YELLOW_VOID_BLOCK = registerBlock("yellow_void_block",
+            new Block(AbstractBlock.Settings
+                    .create()
+                    .strength(4.0F, 6.0F)
+                    .requiresTool()
+                    .luminance(state -> 15)
+            ), true
+    );
     public static Block registerBlock(String name, Block block, boolean makeItem) {
         if (makeItem) {
             registerBlockItem(name, block);
