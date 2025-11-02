@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -31,14 +32,13 @@ public abstract class PlayerMixin extends LivingEntity {
     @Inject(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"))
     public void onHit(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         LivingEntity target = this;
-        //TheArchitectExperiment.LOGGER.info("mixin");
+        TheArchitectExperiment.LOGGER.info("mixin");
         if (target instanceof PlayerEntity player) {
             int slot = -1;
             boolean has = false;
 
-            //TheArchitectExperiment.LOGGER.info("player");
+            TheArchitectExperiment.LOGGER.info("player");
             if (!player.getInventory().contains(ModTags.Items.SOUL)) {
-                super.damage(source, amount);
                 return;
             }
 
@@ -51,18 +51,30 @@ public abstract class PlayerMixin extends LivingEntity {
                 }
             }
 
-            //TheArchitectExperiment.LOGGER.info("has item");
+            TheArchitectExperiment.LOGGER.info("has item");
             ItemStack handItem = player.getInventory().getStack(slot);
-            //TheArchitectExperiment.LOGGER.info("post set");
-            if (handItem.get(ModComponents.SOUL_AMULET_ACTIVE).equals(true) && has) {
-                //TheArchitectExperiment.LOGGER.info("is active in mixin");
+            TheArchitectExperiment.LOGGER.info("post set");
+            if (has && handItem.get(ModComponents.SOUL_AMULET_ACTIVE).equals(true)) {
+                TheArchitectExperiment.LOGGER.info("is active in mixin");
                 target.removeStatusEffect(StatusEffects.INVISIBILITY);
                 target.removeStatusEffect(StatusEffects.SPEED);
                 target.removeStatusEffect(StatusEffects.REGENERATION);
+
+                if (!handItem.get(ModComponents.SOUL_AMULET_PLR_SPEED_LENGTH).equals(0) || !handItem.get(ModComponents.SOUL_AMULET_PLR_SPEED_AMP).equals(0)) {
+                    TheArchitectExperiment.LOGGER.info("has speed effect");
+                    int dur = handItem.get(ModComponents.SOUL_AMULET_PLR_SPEED_LENGTH);
+                    int amp = handItem.get(ModComponents.SOUL_AMULET_PLR_SPEED_AMP);
+                    target.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, dur, amp));
+                    handItem.set(ModComponents.SOUL_AMULET_PLR_SPEED_LENGTH, 0);
+                    handItem.set(ModComponents.SOUL_AMULET_PLR_SPEED_AMP, 0);
+                }
+
                 handItem.set(ModComponents.SOUL_AMULET_ACTIVE, false);
                 player.getItemCooldownManager().set(handItem.getItem(), 360); //45 second cooldown
             }
+            TheArchitectExperiment.LOGGER.info(handItem.get(ModComponents.SOUL_AMULET_ACTIVE).toString());
         }
-
     }
+
+
 }

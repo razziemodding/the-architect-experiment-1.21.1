@@ -23,7 +23,9 @@ public class ModItems {
     public static final Item SOUL_AMULET = registerItem("soul_amulet", new SoulAmuletItem(new Item.Settings()
             .rarity(Rarity.RARE)
             .maxCount(1)
-            .component(ModComponents.SOUL_AMULET_ACTIVE, false)));
+            .component(ModComponents.SOUL_AMULET_ACTIVE, false)
+            .component(ModComponents.SOUL_AMULET_PLR_SPEED_LENGTH, 0)
+            .component(ModComponents.SOUL_AMULET_PLR_SPEED_AMP, 0)));
     public static final Item BOLT_AMULET = registerItem("bolt_amulet", new BoltAmuletItem(new Item.Settings().rarity(Rarity.RARE).maxCount(1)));
     public static final Item WIND_AMULET = registerItem("wind_amulet", new WindAmuletItem(new Item.Settings().rarity(Rarity.RARE).maxCount(1)));
 

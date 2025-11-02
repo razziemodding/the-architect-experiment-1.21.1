@@ -43,6 +43,15 @@ public class SoulAmuletItem extends Item {
             user.removeStatusEffect(StatusEffects.SPEED);
             user.removeStatusEffect(StatusEffects.REGENERATION);
 
+            if (!handItem.get(ModComponents.SOUL_AMULET_PLR_SPEED_LENGTH).equals(0) || !handItem.get(ModComponents.SOUL_AMULET_PLR_SPEED_AMP).equals(0)) {
+                TheArchitectExperiment.LOGGER.info("has speed effect");
+                int dur = handItem.get(ModComponents.SOUL_AMULET_PLR_SPEED_LENGTH);
+                int amp = handItem.get(ModComponents.SOUL_AMULET_PLR_SPEED_AMP);
+                user.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, dur, amp));
+                handItem.set(ModComponents.SOUL_AMULET_PLR_SPEED_LENGTH, 0);
+                handItem.set(ModComponents.SOUL_AMULET_PLR_SPEED_AMP, 0);
+            }
+
             handItem.set(ModComponents.SOUL_AMULET_ACTIVE, false);
             if (!world.isClient) {
                 for (ServerPlayerEntity tracking : PlayerLookup.tracking(user)) {
@@ -83,11 +92,20 @@ public class SoulAmuletItem extends Item {
             }
         }
 
+        if (user.hasStatusEffect(StatusEffects.SPEED)) {
+            int dur = user.getStatusEffect(StatusEffects.SPEED).getDuration();
+            int amp = user.getStatusEffect(StatusEffects.SPEED).getAmplifier();
+
+            handItem.set(ModComponents.SOUL_AMULET_PLR_SPEED_LENGTH, dur);
+            handItem.set(ModComponents.SOUL_AMULET_PLR_SPEED_AMP, amp);
+        }
+
         user.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, -1, 1, true, false));
         user.addStatusEffect(new StatusEffectInstance(StatusEffects.INVISIBILITY, -1, 0, true, false));
         user.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, -1, 1, true, false));
 
         handItem.set(ModComponents.SOUL_AMULET_ACTIVE, true);
+        //TheArchitectExperiment.LOGGER.info(handItem.get(ModComponents.SOUL_AMULET_ACTIVE).toString());
 
         if (!world.isClient) {
             ServerWorld server = (ServerWorld) world;

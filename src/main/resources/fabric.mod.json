@@ -1,13 +1,12 @@
 {
 	"schemaVersion": 1,
 	"id": "archexp",
-	"version": "1.0.3",
+	"version": "0.1",
 	"name": "The Architect Experiment",
-	"description": "The Architect gives you... joy.",
+	"description": "The Architect gives you joy.",
 	"authors": [
 		"The Architect",
-		"hv yow pends, pga iewq eap.",
-		"'Vision'"
+		"'Tertius'"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
