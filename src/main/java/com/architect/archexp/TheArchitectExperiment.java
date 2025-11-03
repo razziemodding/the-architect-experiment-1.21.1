@@ -43,8 +43,8 @@ public class TheArchitectExperiment implements ModInitializer {
 				new ItemStack(Items.GLASS_BOTTLE), 3,
 				new ItemStack(Items.APPLE), 1
 		);
-		LOGGER.info(MarketMap.toString());
-		LOGGER.info(MarketCost.toString());
+		LOGGER.debug(MarketMap.toString());
+		LOGGER.debug(MarketCost.toString());
 
 
 		ModItems.registerModItems();
