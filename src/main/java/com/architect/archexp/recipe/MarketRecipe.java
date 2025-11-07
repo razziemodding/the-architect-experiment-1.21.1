@@ -13,8 +13,6 @@ import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.registry.tag.TagEntry;
-import net.minecraft.registry.tag.TagKey;
 import net.minecraft.world.World;
 
 public record MarketRecipe(Ingredient input, Ingredient currency, ItemStack result) implements Recipe<MarketRecipeInput> {
