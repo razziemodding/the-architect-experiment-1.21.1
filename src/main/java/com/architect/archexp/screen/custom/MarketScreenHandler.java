@@ -11,6 +11,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeEntry;
 import net.minecraft.screen.ScreenHandler;
@@ -102,16 +103,16 @@ public class MarketScreenHandler extends ScreenHandler { //todo: fix numebrs
             sendContentUpdates();
             return;
         }
-
+        if (!this.inventory.getStack(INPUT).isIn(ModTags.Items.MARKET_FIRST_INPUT_VALID_EXTR)) {
+            if (this.inventory.getStack(INPUT).getCount() < TheArchitectExperiment.MarketMap.getOrDefault(this.inventory.getStack(INPUT).getItem(), null) ||
+                    this.inventory.getStack(CURRENCY).getCount() < TheArchitectExperiment.MarketCost.getOrDefault(this.inventory.getStack(INPUT).getItem(), null)) {
+                setStack(OUTPUT, ItemStack.EMPTY);
+                sendContentUpdates();
+                return;
+            }
+        }
         // Compute the output stack for display
         ItemStack result = this.currentRecipe.value().getResult(world.getRegistryManager()).copy();
-        // If output already has same item, show combined count limited by max stack size
-        ItemStack existing = inventory.getStack(OUTPUT);
-        if (!existing.isEmpty() && existing.getCount() < 64) {
-            int combined = Math.min(existing.getCount() + result.getCount(), existing.getMaxCount());
-            result.setCount(combined);
-        }
-
         setStack(OUTPUT, result);
         sendContentUpdates();
     }
@@ -130,8 +131,8 @@ public class MarketScreenHandler extends ScreenHandler { //todo: fix numebrs
 
         // Consume inputs according to your recipe definition
         // TODO: Replace these counts with values from your MarketRecipe (e.g., getInputCount(), getCurrencyCost(), etc.)
-        int inputCost = TheArchitectExperiment.MarketMap.get(inventory.getStack(INPUT).getItem());
-        int currencyCost = TheArchitectExperiment.MarketCost.get(inventory.getStack(INPUT).getItem());
+        int inputCost = this.currentRecipe.value().getInputCost(this.inventory.getStack(INPUT));
+        int currencyCost = this.currentRecipe.value().getCurrencyCost(this.inventory.getStack(INPUT));
 
         ItemStack input = inventory.getStack(INPUT);
         ItemStack currency = inventory.getStack(CURRENCY);

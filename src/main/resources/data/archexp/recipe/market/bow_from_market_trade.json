@@ -1,0 +1,24 @@
+{
+  "type": "archexp:market",
+  "input": {
+    "item": "minecraft:bow"
+  },
+  "currency": {
+    "item": "minecraft:diamond"
+  },
+  "result": {
+    "id": "minecraft:bow",
+    "components": {
+      "minecraft:enchantments": {
+        "minecraft:power": 5,
+        "minecraft:unbreaking": 3,
+        "minecraft:punch": 2
+      },
+      "minecraft:lore": [
+        "\"Brace your arrows\"",
+        "\"for your treasures.\""
+      ]
+    },
+    "count": 1
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "archexp:market",
+  "input": {
+    "item": "minecraft:apple"
+  },
+  "currency": {
+    "item": "minecraft:diamond"
+  },
+  "result": {
+    "id": "minecraft:golden_apple",
+    "count": 5
+  }
+}

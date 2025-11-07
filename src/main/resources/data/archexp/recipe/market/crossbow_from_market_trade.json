@@ -1,0 +1,24 @@
+{
+  "type": "archexp:market",
+  "input": {
+    "item": "minecraft:crossbow"
+  },
+  "currency": {
+    "item": "minecraft:diamond"
+  },
+  "result": {
+    "id": "minecraft:crossbow",
+    "components": {
+      "minecraft:enchantments": {
+        "minecraft:quick_charge": 3,
+        "minecraft:unbreaking": 3,
+        "minecraft:mending": 1
+      },
+      "minecraft:lore": [
+        "\"Steady your aim\"",
+        "\"for your treasures.\""
+      ]
+    },
+    "count": 1
+  }
+}

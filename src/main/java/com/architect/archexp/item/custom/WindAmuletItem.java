@@ -34,7 +34,7 @@ public class WindAmuletItem extends Item {
                 Vec3d vel = new Vec3d(lookD.x * 1.65, 0.65, lookD.z * 1.65);
 
                 for (ServerPlayerEntity inRange : PlayerLookup.around(((ServerWorld) world), user.getPos(), 4)) {
-                    TheArchitectExperiment.LOGGER.info(String.valueOf(inRange));
+                    //TheArchitectExperiment.LOGGER.info(String.valueOf(inRange));
                     if ( inRange != user) {
                         inRange.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 50, 1)); //glow slow fire
                         inRange.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 50, 0)); //glow slow fire

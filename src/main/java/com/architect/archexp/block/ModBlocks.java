@@ -7,14 +7,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ToolMaterial;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModBlocks {
 
-    //public static final Block MARKETPLACE_BLOCK = registerBlock("marketplace", new MarketBlock(AbstractBlock.Settings.create().hardness(15f).strength(-1.0F, 3600000.0F)), true);
+    public static final Block MARKETPLACE_BLOCK = registerBlock("marketplace", new MarketBlock(AbstractBlock.Settings.create().hardness(15f).strength(-1.0F, 3600000.0F)), true);
 
     public static final Block OMNI_VOID_BLOCK = registerBlock("omni_void_block",
             new Block(AbstractBlock.Settings

@@ -7,6 +7,7 @@
     "item": "minecraft:diamond"
   },
   "result": {
-    "id": "minecraft:experience_bottle"
+    "id": "minecraft:experience_bottle",
+    "count": 64
   }
 }

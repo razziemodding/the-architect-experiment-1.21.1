@@ -44,7 +44,7 @@ public class SoulAmuletItem extends Item {
             user.removeStatusEffect(StatusEffects.REGENERATION);
 
             if (!handItem.get(ModComponents.SOUL_AMULET_PLR_SPEED_LENGTH).equals(0) || !handItem.get(ModComponents.SOUL_AMULET_PLR_SPEED_AMP).equals(0)) {
-                TheArchitectExperiment.LOGGER.info("has speed effect");
+                //TheArchitectExperiment.LOGGER.info("has speed effect");
                 int dur = handItem.get(ModComponents.SOUL_AMULET_PLR_SPEED_LENGTH);
                 int amp = handItem.get(ModComponents.SOUL_AMULET_PLR_SPEED_AMP);
                 user.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, dur, amp));

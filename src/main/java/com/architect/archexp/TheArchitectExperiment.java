@@ -7,8 +7,13 @@ import com.architect.archexp.util.ModComponents;
 import com.architect.archexp.item.ModItems;
 import com.architect.archexp.sound.ModSounds;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.entity.damage.DamageType;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,15 +23,15 @@ public class TheArchitectExperiment implements ModInitializer {
 	public static final String MOD_ID = "archexp";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	public static Map<ItemStack, Integer> MarketMap;
-	public static Map<ItemStack, Integer> MarketCost;
+	public static Map<Item, Integer> MarketMap;
+	public static Map<Item, Integer> MarketCost;
 
 	@Override
 	public void onInitialize() {
 		/*
 		todo: uhhh idk put stuff here when you think of it and just say it was from you
 			make building item akin to health amulet
-			finsih,. amarektpalce.
+	finsih,. amarektpalce. DONE!!
 
 
 		todo: weapons -
@@ -34,17 +39,17 @@ public class TheArchitectExperiment implements ModInitializer {
 		 */
 
 		MarketMap = Map.of(
-				new ItemStack(Items.COBWEB), 20,
-				new ItemStack(Items.GLASS_BOTTLE), 64,
-				new ItemStack(Items.APPLE), 5
+				Items.STRING, 20,
+				Items.GLASS_BOTTLE, 64,
+				Items.APPLE, 5
 		);
 		MarketCost = Map.of(
-				new ItemStack(Items.STRING), 1,
-				new ItemStack(Items.GLASS_BOTTLE), 3,
-				new ItemStack(Items.APPLE), 1
+				Items.STRING, 1,
+				Items.GLASS_BOTTLE, 3,
+				Items.APPLE, 1
 		);
-		LOGGER.debug(MarketMap.toString());
-		LOGGER.debug(MarketCost.toString());
+		LOGGER.info(MarketMap.toString());
+		LOGGER.info(MarketCost.toString());
 
 
 		ModItems.registerModItems();

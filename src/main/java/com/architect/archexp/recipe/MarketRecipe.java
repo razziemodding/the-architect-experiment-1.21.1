@@ -1,5 +1,7 @@
 package com.architect.archexp.recipe;
 
+import com.architect.archexp.TheArchitectExperiment;
+import com.architect.archexp.util.ModTags;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.item.ItemStack;
@@ -10,6 +12,9 @@ import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.registry.tag.TagEntry;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.world.World;
 
 public record MarketRecipe(Ingredient input, Ingredient currency, ItemStack result) implements Recipe<MarketRecipeInput> {
@@ -47,6 +52,34 @@ public record MarketRecipe(Ingredient input, Ingredient currency, ItemStack resu
     @Override
     public RecipeType<?> getType() {
         return ModRecipes.MARKET_RECIPE_TYPE;
+    }
+
+    public int getInputCost(ItemStack input) {
+        int cost = 0;
+        if (!input.isEmpty()) {
+            if (TheArchitectExperiment.MarketMap.containsKey(input.getItem())) {
+                cost = TheArchitectExperiment.MarketMap.get(input.getItem());
+            } else if (input.isIn(ModTags.Items.MARKET_FIRST_INPUT_VALID_EXTR)) {
+                cost = 1;
+            }
+        }
+
+        return cost;
+    }
+
+    public int getCurrencyCost(ItemStack input) {
+        int cost = 0;
+        if (!input.isEmpty()) {
+            if (TheArchitectExperiment.MarketCost.containsKey(input.getItem())) {
+                cost = TheArchitectExperiment.MarketCost.get(input.getItem());
+            } else if (input.isIn(ModTags.Items.MARKET_FIRST_INPUT_VALID_EXTR)) {
+                if (input.isIn(ItemTags.ARMOR_ENCHANTABLE)) {
+                    cost = 10;
+                } else cost = 5;
+            }
+        }
+
+        return cost;
     }
 
     //

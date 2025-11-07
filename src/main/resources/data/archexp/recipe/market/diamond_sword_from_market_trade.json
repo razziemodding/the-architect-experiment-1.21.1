@@ -1,0 +1,25 @@
+{
+  "type": "archexp:market",
+  "input": {
+    "item": "minecraft:diamond_sword"
+  },
+  "currency": {
+    "item": "minecraft:diamond"
+  },
+  "result": {
+    "id": "minecraft:diamond_sword",
+    "components": {
+      "minecraft:enchantments": {
+        "minecraft:looting": 3,
+        "minecraft:sharpness": 5,
+        "minecraft:unbreaking": 3,
+        "minecraft:mending": 1
+      },
+      "minecraft:lore": [
+        "\"Slash through the horde\"",
+        "\"for your treasures.\""
+      ]
+    },
+    "count": 1
+  }
+}

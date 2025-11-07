@@ -1,0 +1,26 @@
+{
+  "type": "archexp:market",
+  "input": {
+    "item": "minecraft:diamond_pickaxe"
+  },
+  "currency": {
+    "item": "minecraft:diamond"
+  },
+  "result": {
+    "id": "minecraft:diamond_pickaxe",
+    "components": {
+      "minecraft:enchantments": {
+        "minecraft:sharpness": 5,
+        "minecraft:unbreaking": 3,
+        "minecraft:mending": 1,
+        "minecraft:efficiency": 5
+      },
+      "minecraft:lore": [
+        "\"Dig deep into the world\"",
+        "\"for your treasures,\"",
+        "\".\""
+      ]
+    },
+    "count": 1
+  }
+}
