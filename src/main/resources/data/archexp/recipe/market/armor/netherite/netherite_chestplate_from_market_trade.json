@@ -1,23 +1,19 @@
 {
   "type": "archexp:market",
   "input": {
-    "item": "minecraft:bow"
+    "item": "minecraft:netherite_chestplate"
   },
   "currency": {
     "item": "minecraft:diamond"
   },
   "result": {
-    "id": "minecraft:bow",
+    "id": "minecraft:netherite_chestplate",
     "components": {
       "minecraft:enchantments": {
-        "minecraft:power": 5,
+        "minecraft:protection": 4,
         "minecraft:unbreaking": 3,
-        "minecraft:punch": 2
-      },
-      "minecraft:lore": [
-        "\"Brace your arrows\"",
-        "\"for your treasures.\""
-      ]
+        "minecraft:mending": 1
+      }
     },
     "count": 1
   }

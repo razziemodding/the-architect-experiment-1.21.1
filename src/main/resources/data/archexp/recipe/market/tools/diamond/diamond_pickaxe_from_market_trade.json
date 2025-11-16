@@ -13,12 +13,13 @@
         "minecraft:sharpness": 5,
         "minecraft:unbreaking": 3,
         "minecraft:mending": 1,
-        "minecraft:efficiency": 5
+        "minecraft:efficiency": 5,
+        "minecraft:fortune": 3
       },
       "minecraft:lore": [
-        "\"Dig deep into the world\"",
-        "\"for your treasures,\"",
-        "\".\""
+        "\"Perhaps the enchantment\"",
+        "\"that you seek\"",
+        "\"comes from the crimson.\""
       ]
     },
     "count": 1

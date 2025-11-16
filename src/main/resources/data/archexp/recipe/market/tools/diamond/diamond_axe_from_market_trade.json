@@ -1,0 +1,21 @@
+{
+  "type": "archexp:market",
+  "input": {
+    "item": "minecraft:diamond_axe"
+  },
+  "currency": {
+    "item": "minecraft:diamond"
+  },
+  "result": {
+    "id": "minecraft:diamond_axe",
+    "components": {
+      "minecraft:enchantments": {
+        "minecraft:sharpness": 5,
+        "minecraft:unbreaking": 3,
+        "minecraft:mending": 1,
+        "minecraft:efficiency": 5
+      }
+    },
+    "count": 1
+  }
+}

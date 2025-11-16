@@ -1,24 +1,21 @@
 {
   "type": "archexp:market",
   "input": {
-    "item": "minecraft:diamond_axe"
+    "item": "minecraft:netherite_boots"
   },
   "currency": {
     "item": "minecraft:diamond"
   },
   "result": {
-    "id": "minecraft:diamond_axe",
+    "id": "minecraft:netherite_boots",
     "components": {
       "minecraft:enchantments": {
-        "minecraft:sharpness": 5,
+        "minecraft:protection": 4,
         "minecraft:unbreaking": 3,
         "minecraft:mending": 1,
-        "minecraft:efficiency": 5
-      },
-      "minecraft:lore": [
-        "\"Cut through the lush forests\"",
-        "\"for your treasures.\""
-      ]
+        "minecraft:feather_falling": 4,
+        "minecraft:depth_strider": 3
+      }
     },
     "count": 1
   }
