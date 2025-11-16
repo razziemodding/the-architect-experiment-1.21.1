@@ -2,12 +2,10 @@ package com.architect.archexp.mixin;
 
 import com.architect.archexp.TheArchitectExperiment;
 import com.architect.archexp.damage_source.ModDamageSources;
-import com.architect.archexp.item.custom.HealthAmuletItem;
 import com.architect.archexp.util.ModComponents;
 import com.architect.archexp.item.ModItems;
 import com.architect.archexp.util.ModTags;
 import net.minecraft.entity.*;
-import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
