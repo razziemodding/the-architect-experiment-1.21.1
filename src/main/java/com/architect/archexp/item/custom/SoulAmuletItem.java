@@ -39,20 +39,9 @@ public class SoulAmuletItem extends Item {
         ItemStack emp = new ItemStack(Items.AIR);
         if (Objects.equals(handItem.get(ModComponents.SOUL_AMULET_ACTIVE), true)) {
             //TheArchitectExperiment.LOGGER.info("active");
-            user.removeStatusEffect(StatusEffects.INVISIBILITY);
-            user.removeStatusEffect(StatusEffects.SPEED);
-            user.removeStatusEffect(StatusEffects.REGENERATION);
 
-            if (!handItem.get(ModComponents.SOUL_AMULET_PLR_SPEED_LENGTH).equals(0) || !handItem.get(ModComponents.SOUL_AMULET_PLR_SPEED_AMP).equals(0)) {
-                //TheArchitectExperiment.LOGGER.info("has speed effect");
-                int dur = handItem.get(ModComponents.SOUL_AMULET_PLR_SPEED_LENGTH);
-                int amp = handItem.get(ModComponents.SOUL_AMULET_PLR_SPEED_AMP);
-                user.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, dur, amp));
-                handItem.set(ModComponents.SOUL_AMULET_PLR_SPEED_LENGTH, 0);
-                handItem.set(ModComponents.SOUL_AMULET_PLR_SPEED_AMP, 0);
-            }
+            TheArchitectExperiment.removeSoulEffects(user, handItem);
 
-            handItem.set(ModComponents.SOUL_AMULET_ACTIVE, false);
             if (!world.isClient) {
                 for (ServerPlayerEntity tracking : PlayerLookup.tracking(user)) {
                     //TheArchitectExperiment.LOGGER.info("la");
@@ -66,7 +55,7 @@ public class SoulAmuletItem extends Item {
                     }
                 }
             }
-            user.getItemCooldownManager().set(handItem.getItem(), 360); //45 second cooldown
+            user.getItemCooldownManager().set(handItem.getItem(), 360); //45-second cooldown
             return TypedActionResult.success(handItem);
         } else {
             //TheArchitectExperiment.LOGGER.info("false");

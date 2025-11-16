@@ -7,8 +7,17 @@ import com.architect.archexp.util.ModComponents;
 import com.architect.archexp.item.ModItems;
 import com.architect.archexp.sound.ModSounds;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,20 +27,23 @@ public class TheArchitectExperiment implements ModInitializer {
 	public static final String MOD_ID = "archexp";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
+
 	public static Map<Item, Integer> MarketMap;
 	public static Map<Item, Integer> MarketCost;
 
+	public static final RegistryKey<DimensionType> VOID_T = RegistryKey.of(RegistryKeys.DIMENSION_TYPE, Identifier.of(MOD_ID, "void_t"));
+	public static final RegistryKey<World> VOID = RegistryKey.of(RegistryKeys.WORLD, Identifier.of(MOD_ID, "void"));
+	/*
+      todo:
+      	weapons -
+      		skeletal scale
+        other items -
+            void teleporter
+            potential building tool
+    */
 	@Override
 	public void onInitialize() {
-		/*
-		todo: uhhh idk put stuff here when you think of it and just say it was from you
-			make building item akin to health amulet
-	finsih,. amarektpalce. DONE!!
 
-
-		todo: weapons -
-			skeletal scale -
-		 */
 
 		MarketMap = Map.of(
 				Items.STRING, 20,
@@ -43,8 +55,8 @@ public class TheArchitectExperiment implements ModInitializer {
 				Items.GLASS_BOTTLE, 3,
 				Items.APPLE, 1
 		);
-		LOGGER.info(MarketMap.toString());
-		LOGGER.info(MarketCost.toString());
+		//LOGGER.info(MarketMap.toString());
+		//LOGGER.info(MarketCost.toString());
 
 
 		ModItems.registerModItems();
@@ -57,5 +69,21 @@ public class TheArchitectExperiment implements ModInitializer {
 
 	}
 
+	public static void removeSoulEffects(LivingEntity entity, ItemStack amulet) {
+		entity.removeStatusEffect(StatusEffects.INVISIBILITY);
+		entity.removeStatusEffect(StatusEffects.SPEED);
+		entity.removeStatusEffect(StatusEffects.REGENERATION);
+
+		if (!amulet.get(ModComponents.SOUL_AMULET_PLR_SPEED_LENGTH).equals(0) || !amulet.get(ModComponents.SOUL_AMULET_PLR_SPEED_AMP).equals(0)) {
+			//TheArchitectExperiment.LOGGER.info("has speed effect");
+			int dur = amulet.get(ModComponents.SOUL_AMULET_PLR_SPEED_LENGTH);
+			int amp = amulet.get(ModComponents.SOUL_AMULET_PLR_SPEED_AMP);
+			entity.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, dur, amp));
+			amulet.set(ModComponents.SOUL_AMULET_PLR_SPEED_LENGTH, 0);
+			amulet.set(ModComponents.SOUL_AMULET_PLR_SPEED_AMP, 0);
+		}
+
+		amulet.set(ModComponents.SOUL_AMULET_ACTIVE, false);
+	}
 
 }
