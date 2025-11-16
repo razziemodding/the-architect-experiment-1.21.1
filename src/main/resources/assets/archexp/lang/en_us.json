@@ -6,6 +6,8 @@
   "item.archexp.wind_amulet": "Amulet of the Gale",
   "item.archexp.steam_happy": "Steam Happy",
 
+  "item.archexp.self_damage_axe": "Harmful Axe",
+
   "block.archexp.marketplace": "Marketplace",
   "block.archexp.omni_void_block": "Unbreakable Void Block",
   "block.archexp.void_block": "Void Block",
@@ -16,5 +18,8 @@
   "sound.archexp.soul_amulet_use": "Soul Amulet used",
   "sound.archexp.wind_amulet_use": "Wind Amulet used",
 
-  "container.archexp.market": "Marketplace"
+  "container.archexp.market": "Marketplace",
+
+  "death.attack.self_damage_axe": "%s drained themselves of all force",
+  "death.attack.self_damage_axe.player": "%s drained themselves of force whilst trying to escape %s"
 }

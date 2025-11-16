@@ -3,10 +3,7 @@ package com.architect.archexp.item;
 import com.architect.archexp.TheArchitectExperiment;
 import com.architect.archexp.item.custom.*;
 import com.architect.archexp.util.ModComponents;
-import net.minecraft.item.Item;
-import net.minecraft.item.SwordItem;
-import net.minecraft.item.ToolMaterial;
-import net.minecraft.item.ToolMaterials;
+import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -32,6 +29,8 @@ public class ModItems {
     //weapons
     public static final Item SKELETAL_SCALE = registerItem("skeletal_scale", new SwordItem(ToolMaterials.STONE,
             new Item.Settings().attributeModifiers(SwordItem.createAttributeModifiers(ToolMaterials.IRON, 3, -2)).rarity(Rarity.EPIC).maxCount(1)));
+    public static final Item SELF_DAMAGE_AXE = registerItem("self_damage_axe", new AxeItem(ToolMaterials.NETHERITE,
+            new Item.Settings().attributeModifiers(SwordItem.createAttributeModifiers(ToolMaterials.NETHERITE, 5, -3)).rarity(Rarity.EPIC).maxCount(1)));
 
     //steamhappy
 
