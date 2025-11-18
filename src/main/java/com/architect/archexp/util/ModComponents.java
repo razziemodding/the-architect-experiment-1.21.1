@@ -26,6 +26,9 @@ public class ModComponents {
     public static ComponentType<Integer> SOUL_AMULET_PLR_SPEED_AMP = Registry.register(Registries.DATA_COMPONENT_TYPE,
             Identifier.of(TheArchitectExperiment.MOD_ID, "soul_amulet_plr_speed_amp"),
             ComponentType.<Integer>builder().codec(Codec.INT).build());
+    public static ComponentType<String> SOUL_AMULET_PLR = Registry.register(Registries.DATA_COMPONENT_TYPE,
+            Identifier.of(TheArchitectExperiment.MOD_ID, "soul_amulet_user"),
+            ComponentType.<String>builder().codec(Codec.STRING).build());
 
     public static void registerComponents() {
         TheArchitectExperiment.LOGGER.info("The Architect gives you intricacy.");

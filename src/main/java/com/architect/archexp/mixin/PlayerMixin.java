@@ -78,7 +78,7 @@ public abstract class PlayerMixin extends LivingEntity {
             DamageSource source = new DamageSource(this.getWorld().getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(ModDamageSources.SELF_DAMAGE_AXE_DAMAGE));
             if (player.getEquippedStack(EquipmentSlot.MAINHAND).getItem().equals(ModItems.SELF_DAMAGE_AXE)) {
                 TheArchitectExperiment.LOGGER.debug("axe detected");
-                player.damage(source, 3.5f);
+                player.damage(source, 8f);
             }
         }
     }

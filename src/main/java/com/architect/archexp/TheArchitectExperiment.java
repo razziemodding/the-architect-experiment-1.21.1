@@ -37,6 +37,9 @@ public class TheArchitectExperiment implements ModInitializer {
       todo:
       	weapons -
       		skeletal scale
+      		karma blade -
+      			guilt effect
+      			3 billion mixins
         other items -
             void teleporter
             potential building tool
@@ -47,11 +50,11 @@ public class TheArchitectExperiment implements ModInitializer {
 
 		MarketMap = Map.of(
 				Items.STRING, 20,
-				Items.GLASS_BOTTLE, 64,
+				Items.GLASS_BOTTLE, 32,
 				Items.APPLE, 5
 		);
 		MarketCost = Map.of(
-				Items.STRING, 1,
+				Items.STRING, 5,
 				Items.GLASS_BOTTLE, 3,
 				Items.APPLE, 1
 		);
