@@ -36,9 +36,10 @@ public class WindAmuletItem extends Item {
                 for (ServerPlayerEntity inRange : PlayerLookup.around(((ServerWorld) world), user.getPos(), 4)) {
                     //TheArchitectExperiment.LOGGER.info(String.valueOf(inRange));
                     if ( inRange != user) {
-                        inRange.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 50, 1)); //glow slow fire
-                        inRange.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 50, 0)); //glow slow fire
-                        inRange.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 50, 0)); //glow slow fire
+                        inRange.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 50, 255)); //glow slow fire jumpboost
+                        inRange.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 50, 0)); //glow slow fire jumpboost
+                        inRange.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 50, 0)); //glow slow fire jumpboost
+                        inRange.addStatusEffect(new StatusEffectInstance(StatusEffects.JUMP_BOOST, 50, 255)); //glow slow fire jumpboost
                         inRange.setVelocity(vel.x, vel.y, vel.z);
                         inRange.velocityModified = true;
                     }

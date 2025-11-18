@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "combat",
+  "ingredients": [
+    {
+      "item": "archexp:health_amulet"
+    },
+    {
+      "item": "archexp:might_amulet"
+    },
+    {
+      "item": "archexp:bolt_amulet"
+    },
+    {
+      "item": "archexp:wind_amulet"
+    }
+  ],
+  "result": {
+    "id": "archexp:soul_amulet",
+    "count": 1
+  }
+}
