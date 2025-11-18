@@ -89,4 +89,11 @@ public class TheArchitectExperiment implements ModInitializer {
 		amulet.set(ModComponents.SOUL_AMULET_ACTIVE, false);
 	}
 
+	public static void clearSoulComponents(ItemStack amulet) {
+		amulet.set(ModComponents.SOUL_AMULET_ACTIVE, false);
+		amulet.set(ModComponents.SOUL_AMULET_PLR, "");
+		amulet.set(ModComponents.SOUL_AMULET_PLR_SPEED_LENGTH, 0);
+		amulet.set(ModComponents.SOUL_AMULET_PLR_SPEED_AMP, 0);
+	}
+
 }
