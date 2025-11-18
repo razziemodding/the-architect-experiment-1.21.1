@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Objects;
 
-public class SoulAmuletItem extends Item {
+public class SoulAmuletItem extends Item { //todo: fix inf speed if swapped to offhand, make custom effect
     public SoulAmuletItem(Settings settings) {
         super(settings);
     }
@@ -37,6 +37,13 @@ public class SoulAmuletItem extends Item {
         }
         ItemStack handItem = user.getEquippedStack(EquipmentSlot.OFFHAND);
         ItemStack emp = new ItemStack(Items.AIR);
+
+        if (!handItem.get(ModComponents.SOUL_AMULET_PLR).equals(user.getUuidAsString())) {
+            TheArchitectExperiment.clearSoulComponents(handItem);
+
+            return TypedActionResult.pass(handItem);
+        }
+
         if (Objects.equals(handItem.get(ModComponents.SOUL_AMULET_ACTIVE), true)) {
             //TheArchitectExperiment.LOGGER.info("active");
 
@@ -94,6 +101,7 @@ public class SoulAmuletItem extends Item {
         user.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, -1, 1, true, false));
 
         handItem.set(ModComponents.SOUL_AMULET_ACTIVE, true);
+        handItem.set(ModComponents.SOUL_AMULET_PLR, user.getUuidAsString());
         //TheArchitectExperiment.LOGGER.info(handItem.get(ModComponents.SOUL_AMULET_ACTIVE).toString());
 
         if (!world.isClient) {
@@ -110,4 +118,6 @@ public class SoulAmuletItem extends Item {
 
         return TypedActionResult.success(handItem);
     }
+
+
 }

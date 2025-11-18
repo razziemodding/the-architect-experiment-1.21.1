@@ -84,8 +84,8 @@ public abstract class PlayerMixin extends LivingEntity {
     }
 
 
-    @Inject(method = "dropItem(Lnet/minecraft/item/ItemStack;Z)Lnet/minecraft/entity/ItemEntity;", at = @At("HEAD"), cancellable = true)
-    public void dropItemMixin(ItemStack item, boolean retainOwnership, CallbackInfoReturnable<ItemEntity> ci) {
+    @Inject(method = "dropItem(Lnet/minecraft/item/ItemStack;ZZ)Lnet/minecraft/entity/ItemEntity;", at = @At("HEAD"), cancellable = true)
+    public void dropItemMixin(ItemStack item, boolean throwRandomly, boolean retainOwnership, CallbackInfoReturnable<ItemEntity> ci) {
         TheArchitectExperiment.LOGGER.debug("drop item mixin");
         if (!item.isIn(ModTags.Items.AMULETS)) {
             ci.cancel();
@@ -93,6 +93,9 @@ public abstract class PlayerMixin extends LivingEntity {
 
         if (item.getItem().equals(ModItems.SOUL_AMULET)) {
             TheArchitectExperiment.removeSoulEffects(player, item);
+            PlayerEntity user = (PlayerEntity) player;
+
+            user.getItemCooldownManager().set(item.getItem(), 360);
         } else if (item.getItem().equals(ModItems.HEALTH_AMULET)) {
             player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(20.0);
         } else {
