@@ -72,8 +72,8 @@ public record MarketRecipe(Ingredient input, Ingredient currency, ItemStack resu
                 cost = TheArchitectExperiment.MarketCost.get(input.getItem());
             } else if (input.isIn(ModTags.Items.MARKET_FIRST_INPUT_VALID_EXTR)) {
                 if (input.isIn(ItemTags.ARMOR_ENCHANTABLE)) {
-                    cost = 10;
-                } else cost = 5;
+                    cost = 15;
+                } else cost = 10;
             }
         }
 
