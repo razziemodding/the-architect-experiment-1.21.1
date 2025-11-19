@@ -27,6 +27,9 @@ public class ModItems {
     public static final Item BOLT_AMULET = registerItem("bolt_amulet", new BoltAmuletItem(new Item.Settings().rarity(Rarity.RARE).maxCount(1)));
     public static final Item WIND_AMULET = registerItem("wind_amulet", new WindAmuletItem(new Item.Settings().rarity(Rarity.RARE).maxCount(1)));
 
+    //other items
+    public static final Item VOID_TELEPORTER = registerItem("void_teleporter", new VoidTeleporterItem(new Item.Settings().rarity(Rarity.EPIC).maxCount(1)));
+
     //weapons
     public static final Item SKELETAL_SCALE = registerItem("skeletal_scale", new SwordItem(ToolMaterials.STONE,
             new Item.Settings().attributeModifiers(SwordItem.createAttributeModifiers(ToolMaterials.IRON, 3, -2)).rarity(Rarity.EPIC).maxCount(1)));
@@ -34,7 +37,6 @@ public class ModItems {
             new Item.Settings().attributeModifiers(SwordItem.createAttributeModifiers(ToolMaterials.NETHERITE, -4, -2)).rarity(Rarity.EPIC).maxCount(1)));
 
     //steamhappy
-
     public static final Item STEAM_HAPPY = registerItem("steam_happy", new Item(new Item.Settings().rarity(Rarity.EPIC).maxCount(64)));
 
 

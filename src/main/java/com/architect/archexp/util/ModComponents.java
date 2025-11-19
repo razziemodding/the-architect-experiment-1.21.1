@@ -6,6 +6,7 @@ import net.minecraft.component.ComponentType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 
 public class ModComponents {
     //might
@@ -29,6 +30,11 @@ public class ModComponents {
     public static ComponentType<String> SOUL_AMULET_PLR = Registry.register(Registries.DATA_COMPONENT_TYPE,
             Identifier.of(TheArchitectExperiment.MOD_ID, "soul_amulet_user"),
             ComponentType.<String>builder().codec(Codec.STRING).build());
+
+    //void gate
+    public static ComponentType<BlockPos> VOID_GATE_PLR_RETURN_DEST = Registry.register(Registries.DATA_COMPONENT_TYPE,
+            Identifier.of(TheArchitectExperiment.MOD_ID, "void_gate_plr_return_dest"),
+            ComponentType.<BlockPos>builder().codec(BlockPos.CODEC).build());
 
     public static void registerComponents() {
         TheArchitectExperiment.LOGGER.info("The Architect gives you intricacy.");
