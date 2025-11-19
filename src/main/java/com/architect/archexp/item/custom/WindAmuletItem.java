@@ -1,6 +1,5 @@
 package com.architect.archexp.item.custom;
 
-import com.architect.archexp.TheArchitectExperiment;
 import com.architect.archexp.sound.ModSounds;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.minecraft.entity.EquipmentSlot;
