@@ -8,7 +8,7 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.util.math.BlockPos;
 
-public class VoidTouchedEffect extends StatusEffect { //todo: try command manager with MinecraftServer as command source
+public class VoidTouchedEffect extends StatusEffect {
 
     private BlockPos playerReturnPos;
     private LivingEntity playerReturnEntity;
