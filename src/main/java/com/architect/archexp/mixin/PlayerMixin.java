@@ -98,8 +98,6 @@ public abstract class PlayerMixin extends LivingEntity {
             user.getItemCooldownManager().set(item.getItem(), 360);
         } else if (item.getItem().equals(ModItems.HEALTH_AMULET)) {
             player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(20.0);
-        } else {
-            ci.cancel();
         }
     }
     @Override
