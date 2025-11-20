@@ -1,6 +1,7 @@
 package com.architect.archexp;
 
 import com.architect.archexp.block.ModBlocks;
+import com.architect.archexp.effect.ModEffects;
 import com.architect.archexp.recipe.ModRecipes;
 import com.architect.archexp.screen.ModScreens;
 import com.architect.archexp.util.ModComponents;
@@ -13,11 +14,6 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,8 +27,6 @@ public class TheArchitectExperiment implements ModInitializer {
 	public static Map<Item, Integer> MarketMap;
 	public static Map<Item, Integer> MarketCost;
 
-	public static final RegistryKey<DimensionType> VOID_T = RegistryKey.of(RegistryKeys.DIMENSION_TYPE, Identifier.of(MOD_ID, "void_t"));
-	public static final RegistryKey<World> VOID = RegistryKey.of(RegistryKeys.WORLD, Identifier.of(MOD_ID, "void"));
 	/*
       todo:
       	weapons -
@@ -70,9 +64,9 @@ public class TheArchitectExperiment implements ModInitializer {
 		ModBlocks.registerModBlocks();
 		ModScreens.registerScreenHandlers();
 		ModRecipes.registerRecipes();
-
-
+		ModEffects.registerModEffects();
 	}
+
 
 	public static void removeSoulEffects(LivingEntity entity, ItemStack amulet) {
 		entity.removeStatusEffect(StatusEffects.INVISIBILITY);

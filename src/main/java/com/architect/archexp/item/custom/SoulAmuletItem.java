@@ -38,7 +38,7 @@ public class SoulAmuletItem extends Item { //todo: fix inf speed if swapped to o
         ItemStack handItem = user.getEquippedStack(EquipmentSlot.OFFHAND);
         ItemStack emp = new ItemStack(Items.AIR);
 
-        if (!handItem.get(ModComponents.SOUL_AMULET_PLR).equals(user.getUuidAsString())) {
+        if (!handItem.get(ModComponents.SOUL_AMULET_PLR).equals("") && !handItem.get(ModComponents.SOUL_AMULET_PLR).equals(user.getUuidAsString())) {
             TheArchitectExperiment.clearSoulComponents(handItem);
 
             return TypedActionResult.pass(handItem);

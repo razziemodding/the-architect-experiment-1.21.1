@@ -73,11 +73,11 @@ public abstract class PlayerMixin extends LivingEntity {
 
     @Inject(method = "attack", at = @At("TAIL"))
     public void useDmgAxe(Entity target, CallbackInfo ci) {
-        TheArchitectExperiment.LOGGER.debug("die0");
+        //TheArchitectExperiment.LOGGER.debug("die0");
         if (target instanceof LivingEntity) {
             DamageSource source = new DamageSource(this.getWorld().getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(ModDamageSources.SELF_DAMAGE_AXE_DAMAGE));
             if (player.getEquippedStack(EquipmentSlot.MAINHAND).getItem().equals(ModItems.SELF_DAMAGE_AXE)) {
-                TheArchitectExperiment.LOGGER.debug("axe detected");
+                //TheArchitectExperiment.LOGGER.debug("axe detected");
                 player.damage(source, 8f);
             }
         }
@@ -86,11 +86,7 @@ public abstract class PlayerMixin extends LivingEntity {
 
     @Inject(method = "dropItem(Lnet/minecraft/item/ItemStack;ZZ)Lnet/minecraft/entity/ItemEntity;", at = @At("HEAD"), cancellable = true)
     public void dropItemMixin(ItemStack item, boolean throwRandomly, boolean retainOwnership, CallbackInfoReturnable<ItemEntity> ci) {
-        TheArchitectExperiment.LOGGER.debug("drop item mixin");
-        if (!item.isIn(ModTags.Items.AMULETS)) {
-            ci.cancel();
-        }
-
+        //TheArchitectExperiment.LOGGER.debug("drop item mixin");
         if (item.getItem().equals(ModItems.SOUL_AMULET)) {
             TheArchitectExperiment.removeSoulEffects(player, item);
             PlayerEntity user = (PlayerEntity) player;
