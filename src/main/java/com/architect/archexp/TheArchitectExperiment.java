@@ -43,6 +43,8 @@ public class TheArchitectExperiment implements ModInitializer {
         other items -
             void teleporter
             potential building tool
+        make kai a cool item
+        kill sublmity
     */
 	@Override
 	public void onInitialize() {
