@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Optional;
 
-public class MarketScreenHandler extends ScreenHandler { //todo: fix numebrs
+public class MarketScreenHandler extends ScreenHandler { //
     private final Inventory inventory;
     private final ScreenHandlerContext context;
 
@@ -85,19 +85,17 @@ public class MarketScreenHandler extends ScreenHandler { //todo: fix numebrs
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
 
-        // Initialize output
+        // initialize/update output
         updateResult();
     }
 
     private void updateResult() {
         if (world == null) return;
 
-        // Find a matching recipe for current inputs
         Optional<RecipeEntry<MarketRecipe>> match = getCurrentRecipe();
         this.currentRecipe = match.orElse(null);
 
         if (this.currentRecipe == null) {
-            // No recipe -> clear output
             setStack(OUTPUT, ItemStack.EMPTY);
             sendContentUpdates();
             return;
@@ -110,7 +108,7 @@ public class MarketScreenHandler extends ScreenHandler { //todo: fix numebrs
                 return;
             }
         }
-        // Compute the output stack for display
+        // get output stack
         ItemStack result = this.currentRecipe.value().getResult(world.getRegistryManager()).copy();
         setStack(OUTPUT, result);
         sendContentUpdates();
@@ -119,17 +117,13 @@ public class MarketScreenHandler extends ScreenHandler { //todo: fix numebrs
     private void craftItem() {
         if (this.currentRecipe == null) return;
 
-        // The output to grant
         ItemStack produced = this.currentRecipe.value().getResult(world.getRegistryManager()).copy();
         if (produced.isEmpty()) return;
 
-        // Ensure we can place it into the output slot
         if (!canInsertItemIntoOutputSlot(produced) || !canInsertAmountIntoOutputSlot(produced.getCount())) {
             return;
         }
 
-        // Consume inputs according to your recipe definition
-        // TODO: Replace these counts with values from your MarketRecipe (e.g., getInputCount(), getCurrencyCost(), etc.)
         int inputCost = this.currentRecipe.value().getInputCost(this.inventory.getStack(INPUT));
         int currencyCost = this.currentRecipe.value().getCurrencyCost(this.inventory.getStack(INPUT));
 
@@ -143,7 +137,7 @@ public class MarketScreenHandler extends ScreenHandler { //todo: fix numebrs
         removeStack(INPUT, inputCost);
         removeStack(CURRENCY, currencyCost);
 
-        // Merge crafted result into output slot
+        // merge crafted result into output slot
         ItemStack output = inventory.getStack(OUTPUT);
         if (output.isEmpty()) {
             setStack(OUTPUT, produced);
@@ -178,10 +172,6 @@ public class MarketScreenHandler extends ScreenHandler { //todo: fix numebrs
     private void setStack(int slot, ItemStack stack) {
         this.inventory.setStack(slot, stack);
         sendContentUpdates();
-    }
-
-    private boolean hasRecipe() {
-        return getCurrentRecipe().isPresent();
     }
 
     private boolean canInsertItemIntoOutputSlot(ItemStack out) {
