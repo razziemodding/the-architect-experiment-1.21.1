@@ -18,7 +18,6 @@ import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.world.World;
 
-import java.util.List;
 import java.util.Optional;
 
 public class MarketScreenHandler extends ScreenHandler { //
@@ -36,7 +35,6 @@ public class MarketScreenHandler extends ScreenHandler { //
 
     private final World world;
     private RecipeEntry<MarketRecipe> currentRecipe;
-    private final List<RecipeEntry<MarketRecipe>> recipes;
 
     public MarketScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, new SimpleInventory(3), ScreenHandlerContext.EMPTY);
@@ -48,7 +46,6 @@ public class MarketScreenHandler extends ScreenHandler { //
         this.inventory = inventory;
         this.context = context;
         this.world = playerInventory.player.getWorld();
-        this.recipes = this.world.getRecipeManager().listAllOfType(ModRecipes.MARKET_RECIPE_TYPE);
 
         // input
         this.addSlot(new Slot(inventory, INPUT, SLOT_ONE_X, SLOT_Y) {

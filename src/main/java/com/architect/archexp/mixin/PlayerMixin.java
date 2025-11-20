@@ -84,7 +84,7 @@ public abstract class PlayerMixin extends LivingEntity {
     }
 
 
-    @Inject(method = "dropItem(Lnet/minecraft/item/ItemStack;ZZ)Lnet/minecraft/entity/ItemEntity;", at = @At("HEAD"), cancellable = true)
+    @Inject(method = "dropItem(Lnet/minecraft/item/ItemStack;ZZ)Lnet/minecraft/entity/ItemEntity;", at = @At("HEAD"))
     public void dropItemMixin(ItemStack item, boolean throwRandomly, boolean retainOwnership, CallbackInfoReturnable<ItemEntity> ci) {
         //TheArchitectExperiment.LOGGER.debug("drop item mixin");
         if (item.getItem().equals(ModItems.SOUL_AMULET)) {
