@@ -3,7 +3,6 @@ package com.architect.archexp.item.custom;
 import com.architect.archexp.damage_source.ModDamageSources;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.registry.RegistryKeys;
 

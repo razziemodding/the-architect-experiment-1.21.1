@@ -1,7 +1,6 @@
 package com.architect.archexp.mixin;
 
 import com.architect.archexp.TheArchitectExperiment;
-import com.architect.archexp.damage_source.ModDamageSources;
 import com.architect.archexp.util.ModComponents;
 import com.architect.archexp.item.ModItems;
 import com.architect.archexp.util.ModTags;
@@ -10,7 +9,6 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,7 +16,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerEntity.class)

@@ -1,8 +1,6 @@
 package com.architect.archexp.item.custom;
 
-import com.architect.archexp.TheArchitectExperiment;
 import com.architect.archexp.effect.ModEffects;
-import net.minecraft.command.CommandSource;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
