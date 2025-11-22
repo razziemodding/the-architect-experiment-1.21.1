@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PlayerEntityRenderer.class)
-public class PlayerRendererMixin {
+public class PlayerRendererMixin { //todo:see if i can redo this so its whenevever another player renders a player with soul amulet that they then go invis
     @Inject(method = "renderArm", at = @At("HEAD"), cancellable = true)
     private void hideArmor(MatrixStack matrices, VertexConsumerProvider vertexConsumers,
                            int light, AbstractClientPlayerEntity player,

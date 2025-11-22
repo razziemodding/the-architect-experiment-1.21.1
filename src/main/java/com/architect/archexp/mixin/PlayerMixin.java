@@ -9,11 +9,10 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.server.command.CommandManager;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -41,7 +40,16 @@ public abstract class PlayerMixin extends LivingEntity {
         if (player instanceof PlayerEntity curPlayer) {
             int slot = -1;
             boolean has = false;
-
+            //TheArchitectExperiment.LOGGER.info("precheck");
+            if (curPlayer.getHealth() - amount < 11) {
+                if (!curPlayer.getWorld().isClient) {
+                    CommandManager manager = curPlayer.getServer().getCommandManager();
+                    //TheArchitectExperiment.LOGGER.info("particle");
+                    manager.executeWithPrefix(curPlayer.getServer().getCommandSource(), "particle dust{color:[255.0,0.0,0.0],scale:1} " +
+                            curPlayer.getX() + " " + (curPlayer.getY() + 0.800) + " " + curPlayer.getZ() + " 0.3 0.8 0.3 0.1 15 force");
+                }
+            }
+            //TheArchitectExperiment.LOGGER.info("post check: " + curPlayer.getHealth());
             //TheArchitectExperiment.LOGGER.info("curPlayer");
             if (!curPlayer.getInventory().contains(ModTags.Items.SOUL)) {
                 return;
@@ -63,26 +71,13 @@ public abstract class PlayerMixin extends LivingEntity {
                 //TheArchitectExperiment.LOGGER.info("is active in mixin");
                 TheArchitectExperiment.removeSoulEffects(curPlayer, handItem);
 
-
-                curPlayer.getItemCooldownManager().set(handItem.getItem(), 360); //45 second cooldown
+                curPlayer.getItemCooldownManager().set(handItem.getItem(), 360); //45-second cooldown
             }
             //TheArchitectExperiment.LOGGER.info(handItem.get(ModComponents.SOUL_AMULET_ACTIVE).toString());
+
+
         }
     }
-
-
-    @Inject(method = "attack", at = @At("TAIL"))
-    public void useDmgAxe(Entity target, CallbackInfo ci) {
-        //TheArchitectExperiment.LOGGER.debug("die0");
-        if (target instanceof LivingEntity) {
-            DamageSource source = new DamageSource(this.getWorld().getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(ModDamageSources.SELF_DAMAGE_AXE_DAMAGE));
-            if (player.getEquippedStack(EquipmentSlot.MAINHAND).getItem().equals(ModItems.SELF_DAMAGE_AXE)) {
-                //TheArchitectExperiment.LOGGER.debug("axe detected");
-                player.damage(source, 8f);
-            }
-        }
-    }
-
 
     @Inject(method = "dropItem(Lnet/minecraft/item/ItemStack;ZZ)Lnet/minecraft/entity/ItemEntity;", at = @At("HEAD"))
     public void dropItemMixin(ItemStack item, boolean throwRandomly, boolean retainOwnership, CallbackInfoReturnable<ItemEntity> ci) {
@@ -95,9 +90,5 @@ public abstract class PlayerMixin extends LivingEntity {
         } else if (item.getItem().equals(ModItems.HEALTH_AMULET)) {
             player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(20.0);
         }
-    }
-    @Override
-    public @Nullable ItemEntity dropItem(ItemConvertible item) {
-        return super.dropItem(item);
     }
 }

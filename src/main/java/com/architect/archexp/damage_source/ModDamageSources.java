@@ -8,6 +8,9 @@ import net.minecraft.util.Identifier;
 
 public class ModDamageSources {
 
-    public static final RegistryKey<DamageType> SELF_DAMAGE_AXE_DAMAGE =
-            RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of(TheArchitectExperiment.MOD_ID, "self_damage_axe"));
+    public static final RegistryKey<DamageType> EXECUTIONER_SELF =
+            RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of(TheArchitectExperiment.MOD_ID, "executioner_self"));
+
+    public static final RegistryKey<DamageType> EXECUTIONER_TARGETED =
+            RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of(TheArchitectExperiment.MOD_ID, "executioner_targeted"));
 }

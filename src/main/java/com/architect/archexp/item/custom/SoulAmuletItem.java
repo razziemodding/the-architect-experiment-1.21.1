@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Objects;
 
-public class SoulAmuletItem extends Item { //todo: fix inf speed if swapped to offhand, make custom effect
+public class SoulAmuletItem extends Item { //todo: fix effect not clearing if they shift click into an inventory
     public SoulAmuletItem(Settings settings) {
         super(settings);
     }

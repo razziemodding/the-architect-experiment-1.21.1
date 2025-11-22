@@ -42,7 +42,7 @@ public class TheArchitectExperiment implements ModInitializer {
     */
 	@Override
 	public void onInitialize() {
-
+		//TheArchitectExperiment.LOGGER.debug("debyug on");
 
 		MarketMap = Map.of(
 				Items.STRING, 20,

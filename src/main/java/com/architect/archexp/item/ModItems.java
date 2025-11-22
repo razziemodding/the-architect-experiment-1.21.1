@@ -34,7 +34,7 @@ public class ModItems {
     public static final Item SKELETAL_SCALE = registerItem("skeletal_scale", new SwordItem(ToolMaterials.STONE,
             new Item.Settings().attributeModifiers(SwordItem.createAttributeModifiers(ToolMaterials.IRON, 3, -2)).rarity(Rarity.EPIC).maxCount(1)));
     public static final Item SELF_DAMAGE_AXE = registerItem("self_damage_axe", new CustomAxeItem(ToolMaterials.NETHERITE,
-            new Item.Settings().attributeModifiers(SwordItem.createAttributeModifiers(ToolMaterials.NETHERITE, -4, -2)).rarity(Rarity.EPIC).maxCount(1)));
+            new Item.Settings().attributeModifiers(SwordItem.createAttributeModifiers(ToolMaterials.NETHERITE, -4, -3.6f)).rarity(Rarity.EPIC).maxCount(1)));
 
     //steamhappy
     public static final Item STEAM_HAPPY = registerItem("steam_happy", new Item(new Item.Settings().rarity(Rarity.EPIC).maxCount(64)));

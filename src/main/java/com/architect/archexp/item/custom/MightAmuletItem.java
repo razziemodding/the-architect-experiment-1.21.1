@@ -62,7 +62,7 @@ public class MightAmuletItem extends Item {
         user.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 140, 1, true, false));
         user.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 1, true, false));
         if (!world.isClient()) {
-            TheArchitectExperiment.LOGGER.info("sound");
+            //TheArchitectExperiment.LOGGER.info("sound");
 
             ((ServerWorld) world).spawnParticles(ParticleTypes.CRIMSON_SPORE,
                     user.getX(), user.getY() + 1.2, user.getZ(),

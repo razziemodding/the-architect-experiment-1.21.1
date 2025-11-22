@@ -1,10 +1,13 @@
 package com.architect.archexp.effect;
 
 import com.architect.archexp.TheArchitectExperiment;
+import net.fabricmc.fabric.api.client.message.v1.ClientSendMessageEvents;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.network.message.SentMessage;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.util.math.BlockPos;
 
@@ -28,9 +31,9 @@ public class VoidTouchedEffect extends StatusEffect {
     public void onRemoved(AttributeContainer attributeContainer) {
         super.onRemoved(attributeContainer);
         CommandManager manager = playerReturnEntity.getServer().getCommandManager();
-        TheArchitectExperiment.LOGGER.info("effect gone");
+        //TheArchitectExperiment.LOGGER.info("effect gone");
         manager.executeWithPrefix(playerReturnEntity.getServer().getCommandSource(), "execute in minecraft:overworld run teleport " + playerReturnEntity.getName().getString() +
                 " " + playerReturnPos.getX() + " " + playerReturnPos.getY() + " " + playerReturnPos.getZ());
-        TheArchitectExperiment.LOGGER.info(String.valueOf(playerReturnEntity.getBlockPos()));
+        //TheArchitectExperiment.LOGGER.info(String.valueOf(playerReturnEntity.getBlockPos()));
     }
 }

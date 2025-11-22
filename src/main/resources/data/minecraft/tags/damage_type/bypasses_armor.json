@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "archexp:self_damage_axe"
+    "archexp:executioner_targeted",
+    "archexp:executioner_self"
   ]
 }
