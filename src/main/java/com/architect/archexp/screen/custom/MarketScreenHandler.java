@@ -244,6 +244,8 @@ public class MarketScreenHandler extends ScreenHandler { //
         return newStack;
     }
 
+    
+
     @Override
     public boolean canUse(PlayerEntity player) {
         return this.inventory.canPlayerUse(player);

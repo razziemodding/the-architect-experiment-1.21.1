@@ -21,6 +21,11 @@ public class MarketScreen extends HandledScreen<MarketScreenHandler> {
         RenderSystem.setShaderTexture(0, TEXTURE);
 
         context.drawTexture(TEXTURE, this.x, this.y, 0, 0, backgroundWidth, backgroundHeight);
+    }
 
+    @Override
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        super.render(context, mouseX, mouseY, delta);
+        drawMouseoverTooltip(context, mouseX, mouseY);
     }
 }
