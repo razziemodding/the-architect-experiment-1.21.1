@@ -10,7 +10,6 @@
     "id": "minecraft:netherite_pickaxe",
     "components": {
       "minecraft:enchantments": {
-        "minecraft:sharpness": 5,
         "minecraft:unbreaking": 3,
         "minecraft:mending": 1,
         "minecraft:efficiency": 5,

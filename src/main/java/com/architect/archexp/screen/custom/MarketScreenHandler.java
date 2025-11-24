@@ -104,6 +104,11 @@ public class MarketScreenHandler extends ScreenHandler { //
                 sendContentUpdates();
                 return;
             }
+        } else if (this.inventory.getStack(INPUT).isIn(ModTags.Items.MARKET_FIRST_INPUT_VALID_EXTR) &&
+                this.inventory.getStack(CURRENCY).getCount() < currentRecipe.value().getCurrencyCost(this.inventory.getStack(INPUT))) {
+            setStack(OUTPUT, ItemStack.EMPTY);
+            sendContentUpdates();
+            return;
         }
         // get output stack
         ItemStack result = this.currentRecipe.value().getResult(world.getRegistryManager()).copy();

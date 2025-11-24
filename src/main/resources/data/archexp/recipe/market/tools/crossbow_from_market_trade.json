@@ -12,7 +12,8 @@
       "minecraft:enchantments": {
         "minecraft:quick_charge": 3,
         "minecraft:unbreaking": 3,
-        "minecraft:mending": 1
+        "minecraft:mending": 1,
+        "omnicrossbow:omni": 1
       }
     },
     "count": 1
