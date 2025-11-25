@@ -1,0 +1,20 @@
+{
+  "type": "archexp:market",
+  "input": {
+    "item": "minecraft:diamond_hoe"
+  },
+  "currency": {
+    "item": "minecraft:gold_ingot"
+  },
+  "result": {
+    "id": "minecraft:diamond_hoe",
+    "components": {
+      "minecraft:enchantments": {
+        "minecraft:unbreaking": 3,
+        "minecraft:efficiency": 5,
+        "minecraft:mending": 1
+      }
+    },
+    "count": 1
+  }
+}
