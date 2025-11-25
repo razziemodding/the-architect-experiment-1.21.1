@@ -4,15 +4,14 @@
     "item": "minecraft:diamond_helmet"
   },
   "currency": {
-    "item": "minecraft:diamond"
+    "item": "minecraft:gold_ingot"
   },
   "result": {
     "id": "minecraft:diamond_helmet",
     "components": {
       "minecraft:enchantments": {
-        "minecraft:protection": 4,
+        "minecraft:protection": 2,
         "minecraft:unbreaking": 3,
-        "minecraft:mending": 1,
         "minecraft:respiration": 3,
         "minecraft:aqua_affinity": 1
       }

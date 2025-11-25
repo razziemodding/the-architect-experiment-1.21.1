@@ -4,15 +4,14 @@
     "item": "minecraft:diamond_boots"
   },
   "currency": {
-    "item": "minecraft:diamond"
+    "item": "minecraft:gold_ingot"
   },
   "result": {
     "id": "minecraft:diamond_boots",
     "components": {
       "minecraft:enchantments": {
-        "minecraft:protection": 4,
+        "minecraft:protection": 2,
         "minecraft:unbreaking": 3,
-        "minecraft:mending": 1,
         "minecraft:feather_falling": 4,
         "minecraft:depth_strider": 3
       }
