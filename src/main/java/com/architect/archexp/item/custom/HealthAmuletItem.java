@@ -2,9 +2,7 @@ package com.architect.archexp.item.custom;
 
 import com.architect.archexp.item.ModItems;
 import com.architect.archexp.sound.ModSounds;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -31,6 +29,7 @@ public class HealthAmuletItem extends Item {
         ItemStack handItem = user.getEquippedStack(EquipmentSlot.OFFHAND);
         if (handItem.getItem().equals(ModItems.HEALTH_AMULET)) {
             user.addStatusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 600, 3, true, false));
+            user.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1, true, false));
             user.getItemCooldownManager().set(handItem.getItem(), 1200);
 
             if (!world.isClient) {
