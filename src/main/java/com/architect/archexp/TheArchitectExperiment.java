@@ -35,10 +35,12 @@ public class TheArchitectExperiment implements ModInitializer {
       			guilt effect
       			3 billion mixins
         other items -
-            void teleporter
             potential building tool
         make kai a cool item
         kill sublmity
+        bugs:
+        	fix axe spam
+        	fix/rework health amul;et to use a better way of giving heatlh
     */
 	@Override
 	public void onInitialize() {

@@ -22,5 +22,11 @@
     "sounds": [
       "archexp:bolt_amulet_use"
     ]
+  },
+  "health_amulet_use": {
+    "subtitle": "sound.archexp.health_amulet_use",
+    "sounds": [
+      "archexp:health_amulet_use"
+    ]
   }
 }

@@ -16,7 +16,7 @@ public class ModSounds {
     public static final SoundEvent SOUL_AMULET_USE = registerSound("soul_amulet_use");
     public static final SoundEvent WIND_AMULET_USE = registerSound("wind_amulet_use");
     public static final SoundEvent BOLT_AMULET_USE = registerSound("bolt_amulet_use");
-
+    public static final SoundEvent HEALTH_AMULET_USE = registerSound("health_amulet_use");
 
     private static SoundEvent registerSound(String id) {
         Identifier identifier = Identifier.of(TheArchitectExperiment.MOD_ID, id);
