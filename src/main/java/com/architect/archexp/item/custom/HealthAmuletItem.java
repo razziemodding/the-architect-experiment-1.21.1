@@ -1,12 +1,20 @@
 package com.architect.archexp.item.custom;
 
 import com.architect.archexp.item.ModItems;
+import com.architect.archexp.sound.ModSounds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
 public class HealthAmuletItem extends Item {
@@ -15,22 +23,23 @@ public class HealthAmuletItem extends Item {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        super.inventoryTick(stack, world, entity, slot, selected);
-        if (!world.isClient && entity instanceof PlayerEntity player) {
-            if (player.getEquippedStack(EquipmentSlot.OFFHAND).isOf(ModItems.HEALTH_AMULET)) {
-                giveHealth(player);
-            } else {
-                removeHealth(player);
-            }
+    public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        if (!hand.equals(Hand.OFF_HAND)) {
+            return TypedActionResult.fail(this.getDefaultStack());
         }
-    }
 
+        ItemStack handItem = user.getEquippedStack(EquipmentSlot.OFFHAND);
+        if (handItem.getItem().equals(ModItems.HEALTH_AMULET)) {
+            user.addStatusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 600, 3, true, false));
+            user.getItemCooldownManager().set(handItem.getItem(), 1200);
 
-    private static void giveHealth(PlayerEntity player) {
-        player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(32.0);
-    }
-    private static void removeHealth(PlayerEntity player) {
-        player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(20.0);
+            if (!world.isClient) {
+                ((ServerWorld) world).spawnParticles(ParticleTypes.HAPPY_VILLAGER,
+                        user.getX(), user.getY() + 1, user.getZ(),
+                        40, 0.2, 0.6, 0.2, 1);
+                world.playSound(null, user.getBlockPos(), ModSounds.HEALTH_AMULET_USE, SoundCategory.PLAYERS, 1f, 1f);
+            }
+            return TypedActionResult.success(handItem);
+        } else return TypedActionResult.fail(this.getDefaultStack());
     }
 }
