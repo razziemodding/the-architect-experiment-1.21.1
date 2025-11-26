@@ -37,17 +37,7 @@ public abstract class PlayerMixin extends LivingEntity {
         if (player instanceof PlayerEntity curPlayer) {
             int slot = -1;
             boolean has = false;
-            //TheArchitectExperiment.LOGGER.info("precheck");
-            if (curPlayer.getHealth() - amount < 11) {
-                if (!curPlayer.getWorld().isClient) {
-                    CommandManager manager = curPlayer.getServer().getCommandManager();
-                    //TheArchitectExperiment.LOGGER.info("particle");
-                    manager.executeWithPrefix(curPlayer.getServer().getCommandSource(), "particle dust{color:[255.0,0.0,0.0],scale:1} " +
-                            curPlayer.getX() + " " + (curPlayer.getY() + 0.800) + " " + curPlayer.getZ() + " 0.3 0.8 0.3 0.1 15 force");
-                }
-            }
-            //TheArchitectExperiment.LOGGER.info("post check: " + curPlayer.getHealth());
-            //TheArchitectExperiment.LOGGER.info("curPlayer");
+
             if (!curPlayer.getInventory().contains(ModTags.Items.SOUL)) {
                 return;
             }
@@ -73,6 +63,18 @@ public abstract class PlayerMixin extends LivingEntity {
             //TheArchitectExperiment.LOGGER.info(handItem.get(ModComponents.SOUL_AMULET_ACTIVE).toString());
 
 
+        }
+    }
+
+    @Inject(method = "damage", at = @At(value = "RETURN"))
+    public void checkHealth(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
+        if (player instanceof PlayerEntity curPlayer  && curPlayer.getHealth() - amount < 11) {
+            if (!curPlayer.getWorld().isClient) {
+                CommandManager manager = curPlayer.getServer().getCommandManager();
+                //TheArchitectExperiment.LOGGER.info("particle");
+                manager.executeWithPrefix(curPlayer.getServer().getCommandSource(), "particle dust{color:[255.0,0.0,0.0],scale:1} " +
+                        curPlayer.getX() + " " + (curPlayer.getY() + 0.800) + " " + curPlayer.getZ() + " 0.3 0.8 0.3 0.1 15 force");
+            }
         }
     }
 
