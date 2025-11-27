@@ -1,9 +1,9 @@
 package com.architect.archexp.item.custom;
 
 import com.architect.archexp.TheArchitectExperiment;
+import com.architect.archexp.effect.ModEffects;
 import com.architect.archexp.util.ModComponents;
 import com.architect.archexp.sound.ModSounds;
-import com.mojang.datafixers.util.Pair;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -11,8 +11,6 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.network.packet.s2c.play.EntityEquipmentUpdateS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -22,7 +20,6 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-import java.util.List;
 import java.util.Objects;
 
 public class SoulAmuletItem extends Item { //todo: fix effect not clearing if they shift click into an inventory
@@ -36,58 +33,18 @@ public class SoulAmuletItem extends Item { //todo: fix effect not clearing if th
             return TypedActionResult.fail(this.getDefaultStack());
         }
         ItemStack handItem = user.getEquippedStack(EquipmentSlot.OFFHAND);
-        ItemStack emp = new ItemStack(Items.AIR);
 
         if (!handItem.get(ModComponents.SOUL_AMULET_PLR).equals("") && !handItem.get(ModComponents.SOUL_AMULET_PLR).equals(user.getUuidAsString())) {
             TheArchitectExperiment.clearSoulComponents(handItem);
-
-            return TypedActionResult.pass(handItem);
         }
 
         if (Objects.equals(handItem.get(ModComponents.SOUL_AMULET_ACTIVE), true)) {
             //TheArchitectExperiment.LOGGER.info("active");
-
             TheArchitectExperiment.removeSoulEffects(user, handItem);
-
-            if (!world.isClient) {
-                for (ServerPlayerEntity tracking : PlayerLookup.tracking(user)) {
-                    //TheArchitectExperiment.LOGGER.info("la");
-                    if (tracking != user) {
-                        tracking.networkHandler.sendPacket(
-                                new EntityEquipmentUpdateS2CPacket(user.getId(),
-                                        List.of(Pair.of(EquipmentSlot.HEAD, user.getEquippedStack(EquipmentSlot.HEAD)),
-                                                Pair.of(EquipmentSlot.CHEST, user.getEquippedStack(EquipmentSlot.CHEST)),
-                                                Pair.of(EquipmentSlot.LEGS, user.getEquippedStack(EquipmentSlot.LEGS)),
-                                                Pair.of(EquipmentSlot.FEET, user.getEquippedStack(EquipmentSlot.FEET)))));
-                    }
-                }
-            }
-            user.getItemCooldownManager().set(handItem.getItem(), 360); //45-second cooldown
+            user.getItemCooldownManager().set(handItem.getItem(), 20); //45-second cooldown
             return TypedActionResult.success(handItem);
-        } else {
-            //TheArchitectExperiment.LOGGER.info("false");
-            if (!world.isClient) {
-                //TheArchitectExperiment.LOGGER.info("server");
-                Vec3d lookD = user.getRotationVector();
-                Vec3d vel = new Vec3d(lookD.x * 1.5, 0.1, lookD.z * 1.5);
-
-                user.setVelocity(vel.x, vel.y, vel.z);
-                user.velocityModified = true;
-
-                for (ServerPlayerEntity tracking : PlayerLookup.tracking(user)) {
-                    //TheArchitectExperiment.LOGGER.info("la");
-                    if (tracking != user) {
-                        tracking.networkHandler.sendPacket(
-                                new EntityEquipmentUpdateS2CPacket(user.getId(),
-                                        List.of(Pair.of(EquipmentSlot.HEAD, emp),
-                                                Pair.of(EquipmentSlot.CHEST, emp),
-                                                Pair.of(EquipmentSlot.LEGS, emp),
-                                                Pair.of(EquipmentSlot.FEET, emp))));
-                    }
-                }
-            }
         }
-
+        //store speed values, if plr has speed before using
         if (user.hasStatusEffect(StatusEffects.SPEED)) {
             int dur = user.getStatusEffect(StatusEffects.SPEED).getDuration();
             int amp = user.getStatusEffect(StatusEffects.SPEED).getAmplifier();
@@ -95,16 +52,31 @@ public class SoulAmuletItem extends Item { //todo: fix effect not clearing if th
             handItem.set(ModComponents.SOUL_AMULET_PLR_SPEED_LENGTH, dur);
             handItem.set(ModComponents.SOUL_AMULET_PLR_SPEED_AMP, amp);
         }
-
+        //do effects
         user.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, -1, 1, true, false));
         user.addStatusEffect(new StatusEffectInstance(StatusEffects.INVISIBILITY, -1, 0, true, false));
-        user.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, -1, 1, true, false));
+        user.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, -1, 0, true, false));
+        user.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, -1, 0, true, false));
+        user.addStatusEffect(new StatusEffectInstance(ModEffects.SOUL_PHASED, -1, 0, false, true));
 
         handItem.set(ModComponents.SOUL_AMULET_ACTIVE, true);
         handItem.set(ModComponents.SOUL_AMULET_PLR, user.getUuidAsString());
-        //TheArchitectExperiment.LOGGER.info(handItem.get(ModComponents.SOUL_AMULET_ACTIVE).toString());
 
         if (!world.isClient) {
+            //shove players around
+            Vec3d lookD = user.getRotationVector();
+            Vec3d vel = new Vec3d(lookD.x * 1.3, 0.3, lookD.z * 1.3);
+            for (ServerPlayerEntity inRange : PlayerLookup.around(((ServerWorld) world), user.getPos(), 4)) {
+                if ( inRange != user) {
+                    inRange.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 40, 255)); //glow slow fire jumpboost
+                    inRange.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 40, 0)); //glow slow fire jumpboost
+                    inRange.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 40, 0)); //glow slow fire jumpboost
+                    inRange.addStatusEffect(new StatusEffectInstance(StatusEffects.JUMP_BOOST, 40, 255)); //glow slow fire jumpboost
+                    inRange.setVelocity(vel.x, vel.y, vel.z);
+                    inRange.velocityModified = true;
+                }
+            }
+
             ServerWorld server = (ServerWorld) world;
             world.playSound(null, user.getBlockPos(), ModSounds.SOUL_AMULET_USE, SoundCategory.PLAYERS, 1f, 1f);
 
@@ -115,9 +87,6 @@ public class SoulAmuletItem extends Item { //todo: fix effect not clearing if th
                     user.getX(), user.getY() + 1, user.getZ(),
                     15, 0, 0, 0, 0.1);
         }
-
         return TypedActionResult.success(handItem);
     }
-
-
 }
