@@ -45,7 +45,7 @@ public abstract class PlayerMixin extends LivingEntity {
             }
 
             if (curPlayer.getInventory().contains(ModTags.Items.SOUL)) {
-                int slot = curPlayer.getInventory().getSlotWithStack(new ItemStack(ModItems.SOUL_AMULET));
+                int slot = curPlayer.getInventory().getSlotWithStack(ModItems.SOUL_AMULET.getDefaultStack());
                 ItemStack soulItem = curPlayer.getInventory().getStack(slot);
 
                 if (soulItem.get(ModComponents.SOUL_AMULET_ACTIVE).equals(true)) {
