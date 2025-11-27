@@ -1,6 +1,7 @@
 package com.architect.archexp.mixin;
 
 import com.architect.archexp.TheArchitectExperiment;
+import com.architect.archexp.effect.ModEffects;
 import com.architect.archexp.util.ModComponents;
 import com.architect.archexp.item.ModItems;
 import com.architect.archexp.util.ModTags;
@@ -30,14 +31,10 @@ public abstract class PlayerMixin extends LivingEntity {
     @Unique
     private final LivingEntity player = this;
 
-    //todo: make it so when a player respawns, they cannot see soul amulet users' armor
     @Inject(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"))
     public void onHit(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         //TheArchitectExperiment.LOGGER.info("mixin");
         if (player instanceof PlayerEntity curPlayer) {
-            int slot = -1;
-            boolean has = false;
-            //TheArchitectExperiment.LOGGER.info("precheck");
             if (curPlayer.getHealth() - amount < 11) {
                 if (!curPlayer.getWorld().isClient) {
                     CommandManager manager = curPlayer.getServer().getCommandManager();
@@ -46,12 +43,22 @@ public abstract class PlayerMixin extends LivingEntity {
                             curPlayer.getX() + " " + (curPlayer.getY() + 0.800) + " " + curPlayer.getZ() + " 0.3 0.8 0.3 0.1 15 force");
                 }
             }
-            //TheArchitectExperiment.LOGGER.info("post check: " + curPlayer.getHealth());
-            //TheArchitectExperiment.LOGGER.info("curPlayer");
-            if (!curPlayer.getInventory().contains(ModTags.Items.SOUL)) {
-                return;
+
+            if (curPlayer.getInventory().contains(ModTags.Items.SOUL)) {
+                int slot = curPlayer.getInventory().getSlotWithStack(new ItemStack(ModItems.SOUL_AMULET));
+                ItemStack soulItem = curPlayer.getInventory().getStack(slot);
+
+                if (soulItem.get(ModComponents.SOUL_AMULET_ACTIVE).equals(true)) {
+                    //TheArchitectExperiment.LOGGER.info("is active in mixin");
+                    TheArchitectExperiment.removeSoulEffects(curPlayer, soulItem);
+
+                    curPlayer.getItemCooldownManager().set(soulItem.getItem(), 360); //45-second cooldown
+                }
+            } else if (curPlayer.hasStatusEffect(ModEffects.SOUL_PHASED)) {
+                TheArchitectExperiment.removeSoulEffects(curPlayer);
             }
 
+            /*
             for (int s = 0; 0 <= curPlayer.getInventory().size(); s++) {
                 ItemStack stack = curPlayer.getInventory().getStack(s);
                 if (!stack.isEmpty() && stack.getItem().equals(ModItems.SOUL_AMULET)) {
@@ -60,19 +67,11 @@ public abstract class PlayerMixin extends LivingEntity {
                     break;
                 }
             }
-
+            */
             //TheArchitectExperiment.LOGGER.info("has item");
-            ItemStack handItem = curPlayer.getInventory().getStack(slot);
+            //ItemStack soulItem = curPlayer.getInventory().getStack(slot);
             //TheArchitectExperiment.LOGGER.info("post set");
-            if (has && handItem.get(ModComponents.SOUL_AMULET_ACTIVE).equals(true)) {
-                //TheArchitectExperiment.LOGGER.info("is active in mixin");
-                TheArchitectExperiment.removeSoulEffects(curPlayer, handItem);
-
-                curPlayer.getItemCooldownManager().set(handItem.getItem(), 360); //45-second cooldown
-            }
-            //TheArchitectExperiment.LOGGER.info(handItem.get(ModComponents.SOUL_AMULET_ACTIVE).toString());
-
-
+            //TheArchitectExperiment.LOGGER.info(soulItem.get(ModComponents.SOUL_AMULET_ACTIVE).toString());
         }
     }
 

@@ -1,6 +1,7 @@
 package com.architect.archexp.item.custom;
 
 import com.architect.archexp.TheArchitectExperiment;
+import com.architect.archexp.effect.ModEffects;
 import com.architect.archexp.util.ModComponents;
 import com.architect.archexp.sound.ModSounds;
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup;
@@ -58,6 +59,7 @@ public class SoulAmuletItem extends Item { //todo: fix effect not clearing if th
         user.addStatusEffect(new StatusEffectInstance(StatusEffects.INVISIBILITY, -1, 0, true, false));
         user.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, -1, 0, true, false));
         user.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, -1, 0, true, false));
+        user.addStatusEffect(new StatusEffectInstance(ModEffects.SOUL_PHASED, -1, 0, false, false));
 
         handItem.set(ModComponents.SOUL_AMULET_ACTIVE, true);
         handItem.set(ModComponents.SOUL_AMULET_PLR, user.getUuidAsString());
