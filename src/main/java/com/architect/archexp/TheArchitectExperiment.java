@@ -74,6 +74,7 @@ public class TheArchitectExperiment implements ModInitializer {
 		entity.removeStatusEffect(StatusEffects.INVISIBILITY);
 		entity.removeStatusEffect(StatusEffects.SPEED);
 		entity.removeStatusEffect(StatusEffects.REGENERATION);
+		entity.removeStatusEffect(ModEffects.SOUL_PHASED);
 
 		if (!amulet.get(ModComponents.SOUL_AMULET_PLR_SPEED_LENGTH).equals(0) || !amulet.get(ModComponents.SOUL_AMULET_PLR_SPEED_AMP).equals(0)) {
 			//TheArchitectExperiment.LOGGER.info("has speed effect");
@@ -85,6 +86,13 @@ public class TheArchitectExperiment implements ModInitializer {
 		}
 
 		amulet.set(ModComponents.SOUL_AMULET_ACTIVE, false);
+	}
+
+	public static void removeSoulEffects(LivingEntity entity) {
+		entity.removeStatusEffect(StatusEffects.INVISIBILITY);
+		entity.removeStatusEffect(StatusEffects.SPEED);
+		entity.removeStatusEffect(StatusEffects.REGENERATION);
+		entity.removeStatusEffect(ModEffects.SOUL_PHASED);
 	}
 
 	public static void clearSoulComponents(ItemStack amulet) {
