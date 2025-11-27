@@ -34,18 +34,16 @@ public abstract class PlayerMixin extends LivingEntity {
 
     @Inject(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"))
     public void onHit(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        //TheArchitectExperiment.LOGGER.info("mixin");
         if (player instanceof PlayerEntity curPlayer) {
-            if (curPlayer.getHealth() - amount < 11) {
+            if (curPlayer.getHealth() - amount < 11) { //todo: fix bug where particle spawn at 17 health??
                 if (!curPlayer.getWorld().isClient) {
                     CommandManager manager = curPlayer.getServer().getCommandManager();
-                    //TheArchitectExperiment.LOGGER.info("particle");
                     manager.executeWithPrefix(curPlayer.getServer().getCommandSource(), "particle dust{color:[255.0,0.0,0.0],scale:1} " +
                             curPlayer.getX() + " " + (curPlayer.getY() + 0.800) + " " + curPlayer.getZ() + " 0.3 0.8 0.3 0.1 15 force");
                 }
             }
 
-            if (curPlayer.getInventory().contains(ModTags.Items.SOUL)) {
+            if (curPlayer.getInventory().contains(ModTags.Items.SOUL)) { //checks if they have soul
                 int slot = 0;
                 for (int s = 0; 0 <= curPlayer.getInventory().size(); s++) {
                     ItemStack stack = curPlayer.getInventory().getStack(s);
@@ -56,13 +54,12 @@ public abstract class PlayerMixin extends LivingEntity {
                 }
                 ItemStack soulItem = curPlayer.getInventory().getStack(slot);
 
-                if (soulItem.get(ModComponents.SOUL_AMULET_ACTIVE).equals(true)) {
-                    //TheArchitectExperiment.LOGGER.info("is active in mixin");
+                if (soulItem.get(ModComponents.SOUL_AMULET_ACTIVE).equals(true)) { //if its active, make it not
                     TheArchitectExperiment.removeSoulEffects(curPlayer, soulItem);
 
                     curPlayer.getItemCooldownManager().set(soulItem.getItem(), 360); //45-second cooldown
                 }
-            } else if (curPlayer.hasStatusEffect(ModEffects.SOUL_PHASED)) {
+            } else if (curPlayer.hasStatusEffect(ModEffects.SOUL_PHASED)) { //if they have the effect
                 TheArchitectExperiment.removeSoulEffects(curPlayer);
             }
         }

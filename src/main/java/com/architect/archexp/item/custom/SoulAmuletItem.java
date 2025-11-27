@@ -36,8 +36,6 @@ public class SoulAmuletItem extends Item { //todo: fix effect not clearing if th
 
         if (!handItem.get(ModComponents.SOUL_AMULET_PLR).equals("") && !handItem.get(ModComponents.SOUL_AMULET_PLR).equals(user.getUuidAsString())) {
             TheArchitectExperiment.clearSoulComponents(handItem);
-
-            return TypedActionResult.pass(handItem);
         }
 
         if (Objects.equals(handItem.get(ModComponents.SOUL_AMULET_ACTIVE), true)) {
@@ -59,7 +57,7 @@ public class SoulAmuletItem extends Item { //todo: fix effect not clearing if th
         user.addStatusEffect(new StatusEffectInstance(StatusEffects.INVISIBILITY, -1, 0, true, false));
         user.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, -1, 0, true, false));
         user.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, -1, 0, true, false));
-        user.addStatusEffect(new StatusEffectInstance(ModEffects.SOUL_PHASED, -1, 0, false, false));
+        user.addStatusEffect(new StatusEffectInstance(ModEffects.SOUL_PHASED, -1, 0, false, true));
 
         handItem.set(ModComponents.SOUL_AMULET_ACTIVE, true);
         handItem.set(ModComponents.SOUL_AMULET_PLR, user.getUuidAsString());
@@ -89,9 +87,6 @@ public class SoulAmuletItem extends Item { //todo: fix effect not clearing if th
                     user.getX(), user.getY() + 1, user.getZ(),
                     15, 0, 0, 0, 0.1);
         }
-
         return TypedActionResult.success(handItem);
     }
-
-
 }
