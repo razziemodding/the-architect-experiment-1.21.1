@@ -29,7 +29,7 @@ public class HealthAmuletItem extends Item {
         ItemStack handItem = user.getEquippedStack(EquipmentSlot.OFFHAND);
         if (handItem.getItem().equals(ModItems.HEALTH_AMULET)) {
             user.addStatusEffect(new StatusEffectInstance(StatusEffects.HEALTH_BOOST, 600, 3, true, false));
-            user.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1, true, false));
+            user.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 10, true, false));
             user.getItemCooldownManager().set(handItem.getItem(), 1200);
 
             if (!world.isClient) {
