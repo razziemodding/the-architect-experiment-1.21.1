@@ -8,12 +8,16 @@ import com.architect.archexp.util.ModComponents;
 import com.architect.archexp.item.ModItems;
 import com.architect.archexp.sound.ModSounds;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTables;
+import net.minecraft.loot.entry.ItemEntry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -67,6 +71,63 @@ public class TheArchitectExperiment implements ModInitializer {
 		ModScreens.registerScreenHandlers();
 		ModRecipes.registerRecipes();
 		ModEffects.registerModEffects();
+
+		LootTableEvents.MODIFY.register(((registryKey, builder, lootTableSource, wrapperLookup) -> {
+			if (lootTableSource.isBuiltin() && LootTables.TRIAL_CHAMBERS_REWARD_OMINOUS_UNIQUE_CHEST.equals(registryKey)) {
+				LootPool.Builder poolBuilder = LootPool.builder().with(ItemEntry.builder(ModItems.MIGHT_AMULET));
+				builder.pool(poolBuilder);
+			}
+			if (lootTableSource.isBuiltin() && LootTables.ANCIENT_CITY_CHEST.equals(registryKey)) {
+				LootPool.Builder poolBuilder = LootPool.builder().with(ItemEntry.builder(ModItems.WIND_AMULET));
+				builder.pool(poolBuilder);
+			}
+			if (lootTableSource.isBuiltin() && LootTables.ABANDONED_MINESHAFT_CHEST.equals(registryKey)) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.with(ItemEntry.builder(ModItems.HEALTH_AMULET))
+						.with(ItemEntry.builder(ModItems.BOLT_AMULET));
+				builder.pool(poolBuilder);
+			}
+			if (lootTableSource.isBuiltin() && LootTables.DESERT_PYRAMID_CHEST.equals(registryKey)) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.with(ItemEntry.builder(ModItems.BOLT_AMULET));
+				builder.pool(poolBuilder);
+			}
+			if (lootTableSource.isBuiltin() && LootTables.BASTION_TREASURE_CHEST.equals(registryKey)) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.with(ItemEntry.builder(ModItems.WIND_AMULET))
+						.with(ItemEntry.builder(ModItems.HEALTH_AMULET))
+						.with(ItemEntry.builder(ModItems.MIGHT_AMULET));
+				builder.pool(poolBuilder);
+			}
+			if (lootTableSource.isBuiltin() && LootTables.BASTION_BRIDGE_CHEST.equals(registryKey)) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.with(ItemEntry.builder(ModItems.BOLT_AMULET))
+						.with(ItemEntry.builder(ModItems.WIND_AMULET));
+				builder.pool(poolBuilder);
+			}
+			if (lootTableSource.isBuiltin() && LootTables.BASTION_HOGLIN_STABLE_CHEST.equals(registryKey)) {
+				LootPool.Builder poolBuilder = LootPool.builder().with(ItemEntry.builder(ModItems.HEALTH_AMULET));
+				builder.pool(poolBuilder);
+			}
+			if (lootTableSource.isBuiltin() && LootTables.BASTION_OTHER_CHEST.equals(registryKey)) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.with(ItemEntry.builder(ModItems.MIGHT_AMULET))
+						.with(ItemEntry.builder(ModItems.BOLT_AMULET));
+				builder.pool(poolBuilder);
+			}
+			if (lootTableSource.isBuiltin() && (LootTables.STRONGHOLD_CROSSING_CHEST.equals(registryKey))) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.with(ItemEntry.builder(ModItems.HEALTH_AMULET))
+						.with(ItemEntry.builder(ModItems.MIGHT_AMULET));
+				builder.pool(poolBuilder);
+			}
+			if (lootTableSource.isBuiltin() && LootTables.STRONGHOLD_LIBRARY_CHEST.equals(registryKey)) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.with(ItemEntry.builder(ModItems.BOLT_AMULET))
+						.with(ItemEntry.builder(ModItems.WIND_AMULET));
+				builder.pool(poolBuilder);
+			}
+		}));
 	}
 
 
