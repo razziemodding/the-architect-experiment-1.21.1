@@ -1,7 +1,7 @@
 {
 	"schemaVersion": 1,
 	"id": "archexp",
-	"version": "1.0.1",
+	"version": "1.0.4",
 	"name": "The Architect Experiment",
 	"description": "The Architect gives you joy.",
 	"authors": [
@@ -9,8 +9,8 @@
 		"'Tertius'"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "The Architect.",
+		"sources": "You will be able to see my work soon..."
 	},
 	"license": "Why would you repurpose the Architect's finest work?",
 	"icon": "assets/archexp/icon.png",
