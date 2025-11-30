@@ -4,15 +4,14 @@
     "item": "minecraft:diamond_leggings"
   },
   "currency": {
-    "item": "minecraft:diamond"
+    "item": "minecraft:gold_ingot"
   },
   "result": {
     "id": "minecraft:diamond_leggings",
     "components": {
       "minecraft:enchantments": {
-        "minecraft:protection": 4,
+        "minecraft:protection": 2,
         "minecraft:unbreaking": 3,
-        "minecraft:mending": 1,
         "minecraft:swift_sneak": 1
       }
     },

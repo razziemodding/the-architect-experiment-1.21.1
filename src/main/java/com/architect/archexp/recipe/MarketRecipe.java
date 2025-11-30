@@ -55,11 +55,13 @@ public record MarketRecipe(Ingredient input, Ingredient currency, ItemStack resu
     public int getInputCost(ItemStack input) {
         int cost = 0;
         if (!input.isEmpty()) {
-            if (TheArchitectExperiment.MarketMap.containsKey(input.getItem())) {
+            if (TheArchitectExperiment.MarketMap.containsKey(input.getItem()))
                 cost = TheArchitectExperiment.MarketMap.get(input.getItem());
-            } else if (input.isIn(ModTags.Items.MARKET_FIRST_INPUT_VALID_EXTR)) {
+            else if (input.isIn(ModTags.Items.MARKET_FIRST_INPUT_VALID_EXTR))
                 cost = 1;
-            }
+            else if (input.isIn(ModTags.Items.CROPS))
+                cost = 16;
+
         }
 
         return cost;
@@ -68,13 +70,12 @@ public record MarketRecipe(Ingredient input, Ingredient currency, ItemStack resu
     public int getCurrencyCost(ItemStack input) {
         int cost = 0;
         if (!input.isEmpty()) {
-            if (TheArchitectExperiment.MarketCost.containsKey(input.getItem())) {
+            if (TheArchitectExperiment.MarketCost.containsKey(input.getItem()))
                 cost = TheArchitectExperiment.MarketCost.get(input.getItem());
-            } else if (input.isIn(ModTags.Items.MARKET_FIRST_INPUT_VALID_EXTR)) {
-                if (input.isIn(ItemTags.ARMOR_ENCHANTABLE)) {
-                    cost = 15;
-                } else cost = 10;
-            }
+            else if (input.isIn(ModTags.Items.MARKET_FIRST_INPUT_VALID_EXTR)) {
+                if (input.isIn(ItemTags.ARMOR_ENCHANTABLE)) cost = 15;
+                else cost = 10;
+            } else if (input.isIn(ModTags.Items.CROPS)) cost = 1;
         }
 
         return cost;

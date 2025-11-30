@@ -1,19 +1,18 @@
 {
   "type": "archexp:market",
   "input": {
-    "item": "minecraft:diamond_helmet"
+    "item": "minecraft:diamond_hoe"
   },
   "currency": {
     "item": "minecraft:gold_ingot"
   },
   "result": {
-    "id": "minecraft:diamond_helmet",
+    "id": "minecraft:diamond_hoe",
     "components": {
       "minecraft:enchantments": {
-        "minecraft:protection": 2,
         "minecraft:unbreaking": 3,
-        "minecraft:respiration": 3,
-        "minecraft:aqua_affinity": 1
+        "minecraft:efficiency": 5,
+        "minecraft:mending": 1
       }
     },
     "count": 1

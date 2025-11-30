@@ -12,6 +12,8 @@ public class ModTags {
         public static final TagKey<Item> AMULETS = createTag("amulets");
         public static final TagKey<Item> SOUL = createTag("soul");
         public static final TagKey<Item> MARKET_FIRST_INPUT_VALID_EXTR = createTag("market_first_input_valid_extr");
+        public static final TagKey<Item> CROPS = createTag("crops");
+        public static final TagKey<Item> MARKETPLACE_TRADABLE = createTag("marketplace_tradable");
 
 
 

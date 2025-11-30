@@ -4,16 +4,15 @@
     "item": "minecraft:diamond_sword"
   },
   "currency": {
-    "item": "minecraft:diamond"
+    "item": "minecraft:gold_ingot"
   },
   "result": {
     "id": "minecraft:diamond_sword",
     "components": {
       "minecraft:enchantments": {
         "minecraft:looting": 3,
-        "minecraft:sharpness": 5,
-        "minecraft:unbreaking": 3,
-        "minecraft:mending": 1
+        "minecraft:sharpness": 2,
+        "minecraft:unbreaking": 3
       }
     },
     "count": 1

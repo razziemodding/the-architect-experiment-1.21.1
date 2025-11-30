@@ -35,7 +35,6 @@ public class MarketScreenHandler extends ScreenHandler { //
 
     private final World world;
     private RecipeEntry<MarketRecipe> currentRecipe;
-
     public MarketScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, new SimpleInventory(3), ScreenHandlerContext.EMPTY);
     }
@@ -97,19 +96,31 @@ public class MarketScreenHandler extends ScreenHandler { //
             sendContentUpdates();
             return;
         }
-        if (!this.inventory.getStack(INPUT).isIn(ModTags.Items.MARKET_FIRST_INPUT_VALID_EXTR)) {
-            if (this.inventory.getStack(INPUT).getCount() < TheArchitectExperiment.MarketMap.getOrDefault(this.inventory.getStack(INPUT).getItem(), null) ||
-                    this.inventory.getStack(CURRENCY).getCount() < TheArchitectExperiment.MarketCost.getOrDefault(this.inventory.getStack(INPUT).getItem(), null)) {
+        if (!this.inventory.getStack(INPUT).isIn(ModTags.Items.MARKETPLACE_TRADABLE)) {
+            setStack(OUTPUT, ItemStack.EMPTY);
+            sendContentUpdates();
+            return;
+        } else {
+            if (this.inventory.getStack(INPUT).isIn(ModTags.Items.CROPS) &&
+                    (this.inventory.getStack(CURRENCY).getCount() < currentRecipe.value().getCurrencyCost(this.inventory.getStack(INPUT))) ||
+                     this.inventory.getStack(INPUT).getCount() < currentRecipe.value().getInputCost(this.inventory.getStack(INPUT))) {
+                setStack(OUTPUT, ItemStack.EMPTY);
+                sendContentUpdates();
+                return;
+            } else if (this.inventory.getStack(INPUT).isIn(ModTags.Items.MARKET_FIRST_INPUT_VALID_EXTR) &&
+                        this.inventory.getStack(CURRENCY).getCount() < currentRecipe.value().getCurrencyCost(this.inventory.getStack(INPUT))) {
+                setStack(OUTPUT, ItemStack.EMPTY);
+                sendContentUpdates();
+                return;
+            } else if (TheArchitectExperiment.MarketMap.containsKey(this.inventory.getStack(INPUT).getItem()) &&
+                    (this.inventory.getStack(INPUT).getCount() < TheArchitectExperiment.MarketMap.getOrDefault(this.inventory.getStack(INPUT).getItem(), null) ||
+                    this.inventory.getStack(CURRENCY).getCount() < TheArchitectExperiment.MarketCost.getOrDefault(this.inventory.getStack(INPUT).getItem(), null))) {
                 setStack(OUTPUT, ItemStack.EMPTY);
                 sendContentUpdates();
                 return;
             }
-        } else if (this.inventory.getStack(INPUT).isIn(ModTags.Items.MARKET_FIRST_INPUT_VALID_EXTR) &&
-                this.inventory.getStack(CURRENCY).getCount() < currentRecipe.value().getCurrencyCost(this.inventory.getStack(INPUT))) {
-            setStack(OUTPUT, ItemStack.EMPTY);
-            sendContentUpdates();
-            return;
         }
+
         // get output stack
         ItemStack result = this.currentRecipe.value().getResult(world.getRegistryManager()).copy();
         setStack(OUTPUT, result);
