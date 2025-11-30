@@ -4,14 +4,15 @@
     "item": "minecraft:diamond_chestplate"
   },
   "currency": {
-    "item": "minecraft:gold_ingot"
+    "item": "minecraft:diamond"
   },
   "result": {
     "id": "minecraft:diamond_chestplate",
     "components": {
       "minecraft:enchantments": {
-        "minecraft:protection": 2,
-        "minecraft:unbreaking": 3
+        "minecraft:protection": 4,
+        "minecraft:unbreaking": 3,
+        "minecraft:mending": 1
       }
     },
     "count": 1

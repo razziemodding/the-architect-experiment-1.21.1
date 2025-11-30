@@ -53,12 +53,14 @@ public class TheArchitectExperiment implements ModInitializer {
 		MarketMap = Map.of(
 				Items.STRING, 20,
 				Items.GLASS_BOTTLE, 32,
-				Items.APPLE, 5
+				Items.APPLE, 5,
+				ModItems.STEAM_HAPPY, 1
 		);
 		MarketCost = Map.of(
 				Items.STRING, 5,
 				Items.GLASS_BOTTLE, 3,
-				Items.APPLE, 1
+				Items.APPLE, 1,
+				ModItems.STEAM_HAPPY, 1
 		);
 		//LOGGER.info(MarketMap.toString());
 		//LOGGER.info(MarketCost.toString());
@@ -73,14 +75,6 @@ public class TheArchitectExperiment implements ModInitializer {
 		ModEffects.registerModEffects();
 
 		LootTableEvents.MODIFY.register(((registryKey, builder, lootTableSource, wrapperLookup) -> {
-			if (lootTableSource.isBuiltin() && LootTables.TRIAL_CHAMBERS_REWARD_OMINOUS_UNIQUE_CHEST.equals(registryKey)) {
-				LootPool.Builder poolBuilder = LootPool.builder()
-						.with(ItemEntry.builder(ModItems.MIGHT_AMULET).weight(1))
-						.with(ItemEntry.builder(ModItems.HEALTH_AMULET).weight(1))
-						.with(ItemEntry.builder(ModItems.BOLT_AMULET).weight(1))
-						.with(ItemEntry.builder(ModItems.WIND_AMULET).weight(1));
-				builder.pool(poolBuilder);
-			}
 			if (lootTableSource.isBuiltin() && LootTables.ANCIENT_CITY_CHEST.equals(registryKey)) {
 				LootPool.Builder poolBuilder = LootPool.builder()
 						.with(ItemEntry.builder(ModItems.WIND_AMULET).weight(1))
@@ -103,6 +97,8 @@ public class TheArchitectExperiment implements ModInitializer {
 			if (lootTableSource.isBuiltin() && LootTables.STRONGHOLD_LIBRARY_CHEST.equals(registryKey)) {
 				LootPool.Builder poolBuilder = LootPool.builder()
 						.with(ItemEntry.builder(ModItems.BOLT_AMULET).weight(1))
+						.with(ItemEntry.builder(ModItems.HEALTH_AMULET).weight(1))
+						.with(ItemEntry.builder(ModItems.MIGHT_AMULET).weight(1))
 						.with(ItemEntry.builder(ModItems.WIND_AMULET).weight(1));
 				builder.pool(poolBuilder);
 			}

@@ -25,6 +25,8 @@
 
     "minecraft:bow",
     "minecraft:crossbow",
-    "minecraft:trident"
+    "minecraft:trident",
+
+    "minecraft:elytra"
   ]
 }

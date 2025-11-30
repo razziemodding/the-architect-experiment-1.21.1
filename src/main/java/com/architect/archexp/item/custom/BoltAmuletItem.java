@@ -29,7 +29,7 @@ public class BoltAmuletItem extends Item {
 
         user.setVelocity(vel.x, vel.y, vel.z);
         user.velocityModified = true;
-        user.getItemCooldownManager().set(this, 60); //increase cd
+        user.getItemCooldownManager().set(this, 100); //increase cd
 
         if (!world.isClient) {
             ServerWorld server = (ServerWorld) world;

@@ -4,6 +4,7 @@
     "#archexp:market_first_input_valid_extr",
     "minecraft:string",
     "minecraft:glass_bottle",
-    "minecraft:apple"
+    "minecraft:apple",
+    "archexp:steam_happy"
   ]
 }

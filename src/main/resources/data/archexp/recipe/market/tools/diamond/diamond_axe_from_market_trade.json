@@ -4,15 +4,17 @@
     "item": "minecraft:diamond_axe"
   },
   "currency": {
-    "item": "minecraft:gold_ingot"
+    "item": "minecraft:diamond"
   },
   "result": {
     "id": "minecraft:diamond_axe",
     "components": {
       "minecraft:enchantments": {
-        "minecraft:sharpness": 2,
+        "minecraft:sharpness": 5,
         "minecraft:unbreaking": 3,
-        "minecraft:efficiency": 5
+        "minecraft:efficiency": 5,
+        "minecraft:mending": 1,
+        "minecraft:silk_touch": 1
       }
     },
     "count": 1

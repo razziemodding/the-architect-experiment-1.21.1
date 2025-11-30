@@ -35,13 +35,13 @@ public class VoidTeleporterItem extends Item {
             } else if (serverPlayer.getSpawnPointPosition() != null) {
                 manager.executeWithPrefix(source, "execute in minecraft:overworld run teleport " + user.getName().getString() +
                         " " + serverPlayer.getSpawnPointPosition().getX() + " " + serverPlayer.getSpawnPointPosition().getY() + " " + serverPlayer.getSpawnPointPosition().getZ());
-                user.getItemCooldownManager().set(this, 300); //15sec
+                user.getItemCooldownManager().set(this, 140); //7sec
 
                 return TypedActionResult.success(user.getStackInHand(hand));
             } else {
                 manager.executeWithPrefix(source, "execute in minecraft:overworld run teleport " + user.getName().getString() +
                         " " + serverPlayer.getWorld().getSpawnPos().getX() + " " + serverPlayer.getWorld().getSpawnPos().getY() + " " + serverPlayer.getWorld().getSpawnPos().getZ());
-                user.getItemCooldownManager().set(this, 300); //15sec
+                user.getItemCooldownManager().set(this, 140); //7sec
 
                 return TypedActionResult.success(user.getStackInHand(hand));
             }
@@ -56,29 +56,27 @@ public class VoidTeleporterItem extends Item {
         if (!user.getWorld().isClient) {
             CommandManager manager = user.getServer().getCommandManager();
             ServerCommandSource source = user.getServer().getCommandSource();
-            //TheArchitectExperiment.LOGGER.info("pre-check: " + entity.toString());
             if (entity instanceof ServerPlayerEntity targetPlayer && user.isSneaking() ) {
-                //TheArchitectExperiment.LOGGER.info("found player");
-                if (!currentDimension.getNamespace().equals("archexp")) {
+                if (!currentDimension.getNamespace().equals("archexp")) { /// in void
                     entity.addStatusEffect(new StatusEffectInstance(ModEffects.VOID_TOUCHED, 600, 0, false, true));
                     manager.executeWithPrefix(source, "execute in archexp:void run teleport " + entity.getName().getString() + " 0 6 0");
                     user.getItemCooldownManager().set(this, 40); //2 sec
 
                     return ActionResult.SUCCESS;
-                } else if (targetPlayer.getSpawnPointPosition() != null) {
+                } else if (targetPlayer.getSpawnPointPosition() != null) { /// not in void, no bed
                     manager.executeWithPrefix(source, "execute in minecraft:overworld run teleport " + entity.getName().getString() +
                             " " + targetPlayer.getSpawnPointPosition().getX() + " " + targetPlayer.getSpawnPointPosition().getY() + " " + targetPlayer.getSpawnPointPosition().getZ());
-                    user.getItemCooldownManager().set(this, 300); //15sec
+                    user.getItemCooldownManager().set(this, 140); //7sec
 
                     return ActionResult.SUCCESS;
-                } else {
+                } else { // bed
                     manager.executeWithPrefix(source, "execute in minecraft:overworld run teleport " + entity.getName().getString() +
                             " " + targetPlayer.getWorld().getSpawnPos().getX() + " " + targetPlayer.getWorld().getSpawnPos().getY() + " " + targetPlayer.getWorld().getSpawnPos().getZ());
-                    user.getItemCooldownManager().set(this, 300); //15sec
+                    user.getItemCooldownManager().set(this, 140); //7sec
 
                     return ActionResult.SUCCESS;
                 }
-            } else if (entity instanceof LivingEntity targetMob && user.isSneaking() ) {
+            } else if (entity instanceof LivingEntity targetMob && user.isSneaking() ) { /// send someone else to void
                 if (!currentDimension.getNamespace().equals("archexp")) {
                     manager.executeWithPrefix(source, "execute in archexp:void run teleport " + targetMob.getUuidAsString() + " 0 6 0");
                 } else {

@@ -12,9 +12,9 @@
       "minecraft:enchantments": {
         "minecraft:protection": 4,
         "minecraft:unbreaking": 3,
-        "minecraft:mending": 1,
         "minecraft:feather_falling": 4,
-        "minecraft:depth_strider": 3
+        "minecraft:depth_strider": 3,
+        "minecraft:soul_speed": 3
       }
     },
     "count": 1
