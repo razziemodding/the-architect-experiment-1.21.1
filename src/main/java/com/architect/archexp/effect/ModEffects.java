@@ -13,6 +13,9 @@ public class ModEffects {
     public static final RegistryEntry<StatusEffect> VOID_TOUCHED = registerStatusEffect("void_touched",
             new VoidTouchedEffect(StatusEffectCategory.NEUTRAL, 0x301934));
 
+    public static final RegistryEntry<StatusEffect> SOUL_PHASED = registerStatusEffect("soul_phased",
+            new SoulPhasedEffect(StatusEffectCategory.BENEFICIAL, 0x83DEDA));
+
     private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect effect) {
         return Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(TheArchitectExperiment.MOD_ID, name), effect);
     }

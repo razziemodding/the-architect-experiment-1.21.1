@@ -15,6 +15,9 @@
   "block.archexp.void_block": "Void Block",
   "block.archexp.white_void_block": "White Void Block",
 
+  "effect.archexp.soul_phased": "Soul Phased",
+  "effect.archexp.void_touched": "����",
+
   "sound.archexp.bolt_amulet_use": "Bolt Amulet used",
   "sound.archexp.might_amulet_use": "Might Amulet used",
   "sound.archexp.soul_amulet_use": "Soul Amulet used",
@@ -28,7 +31,7 @@
   "death.attack.executioner_targeted.player": "%s was smitten by %s",
   "death.attack.executioner_targeted.item": "%s was smitten by %s using %s",
 
-  "tag.archexp.soul": "Soul Amulet",
-  "tag.archexp.amulets": "Amulets",
-  "tag.archexp.market_first_input_valid_extr": "tag.archexp.market_first_input_valid_extr"
+  "tag.item.archexp.soul": "Soul Amulet",
+  "tag.item.archexp.amulets": "Amulets",
+  "tag.item.archexp.market_first_input_valid_extr": "���"
 }
