@@ -73,36 +73,6 @@ public class TheArchitectExperiment implements ModInitializer {
 		ModScreens.registerScreenHandlers();
 		ModRecipes.registerRecipes();
 		ModEffects.registerModEffects();
-
-		LootTableEvents.MODIFY.register(((registryKey, builder, lootTableSource, wrapperLookup) -> {
-			if (lootTableSource.isBuiltin() && LootTables.ANCIENT_CITY_CHEST.equals(registryKey)) {
-				LootPool.Builder poolBuilder = LootPool.builder()
-						.with(ItemEntry.builder(ModItems.WIND_AMULET).weight(1))
-						.with(ItemEntry.builder(ModItems.HEALTH_AMULET).weight(1));
-				builder.pool(poolBuilder);
-			}
-			if (lootTableSource.isBuiltin() && LootTables.BASTION_TREASURE_CHEST.equals(registryKey)) {
-				LootPool.Builder poolBuilder = LootPool.builder()
-						.with(ItemEntry.builder(ModItems.WIND_AMULET).weight(1))
-						.with(ItemEntry.builder(ModItems.HEALTH_AMULET).weight(1))
-						.with(ItemEntry.builder(ModItems.MIGHT_AMULET).weight(1));
-				builder.pool(poolBuilder);
-			}
-			if (lootTableSource.isBuiltin() && LootTables.BASTION_HOGLIN_STABLE_CHEST.equals(registryKey)) {
-				LootPool.Builder poolBuilder = LootPool.builder()
-						.with(ItemEntry.builder(ModItems.BOLT_AMULET).weight(1))
-						.with(ItemEntry.builder(ModItems.MIGHT_AMULET).weight(1));
-				builder.pool(poolBuilder);
-			}
-			if (lootTableSource.isBuiltin() && LootTables.STRONGHOLD_LIBRARY_CHEST.equals(registryKey)) {
-				LootPool.Builder poolBuilder = LootPool.builder()
-						.with(ItemEntry.builder(ModItems.BOLT_AMULET).weight(1))
-						.with(ItemEntry.builder(ModItems.HEALTH_AMULET).weight(1))
-						.with(ItemEntry.builder(ModItems.MIGHT_AMULET).weight(1))
-						.with(ItemEntry.builder(ModItems.WIND_AMULET).weight(1));
-				builder.pool(poolBuilder);
-			}
-		}));
 	}
 
 
