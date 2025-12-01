@@ -27,11 +27,12 @@
   "container.archexp.market": "Marketplace",
 
   "death.attack.executioner_self": "%s drained themselves of all force",
-  "death.attack.executioner_self.player": "%s drained themselves of force whilst trying to slay %s",
-  "death.attack.executioner_targeted.player": "%s was smitten by %s",
-  "death.attack.executioner_targeted.item": "%s was smitten by %s using %s",
+  "death.attack.executioner_self.player": "%s drained themselves of force whilst trying to smite %s",
+  "death.attack.executioner_targeted": "%s was smitten by The Executioner",
 
   "tag.item.archexp.soul": "Soul Amulet",
   "tag.item.archexp.amulets": "Amulets",
-  "tag.item.archexp.market_first_input_valid_extr": "���"
+  "tag.item.archexp.market_first_input_valid_extr": "���",
+  "tag.item.archexp.marketplace_tradable": "���",
+  "tag.item.archexp.crops": "���"
 }

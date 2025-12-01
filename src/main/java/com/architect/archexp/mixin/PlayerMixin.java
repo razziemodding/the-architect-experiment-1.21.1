@@ -1,7 +1,7 @@
 package com.architect.archexp.mixin;
 
 import com.architect.archexp.TheArchitectExperiment;
-import com.architect.archexp.effect.ModEffects;
+import com.architect.archexp.damage_source.ModDamageSources;
 import com.architect.archexp.effect.ModEffects;
 import com.architect.archexp.util.ModComponents;
 import com.architect.archexp.item.ModItems;
@@ -11,6 +11,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,12 +19,15 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerEntity.class)
 public abstract class PlayerMixin extends LivingEntity {
 
     @Shadow public abstract ItemStack getEquippedStack(EquipmentSlot slot);
+
+    @Shadow public abstract float getAttackCooldownProgress(float baseTime);
 
     protected PlayerMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
@@ -35,14 +39,6 @@ public abstract class PlayerMixin extends LivingEntity {
     @Inject(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"))
     public void onHit(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (player instanceof PlayerEntity curPlayer) {
-            if (curPlayer.getHealth() - amount < 11) { //todo: fix bug where particle spawn at 17 health??
-                if (!curPlayer.getWorld().isClient) {
-                    CommandManager manager = curPlayer.getServer().getCommandManager();
-                    manager.executeWithPrefix(curPlayer.getServer().getCommandSource(), "particle dust{color:[255.0,0.0,0.0],scale:1} " +
-                            curPlayer.getX() + " " + (curPlayer.getY() + 0.800) + " " + curPlayer.getZ() + " 0.3 0.8 0.3 0.1 15 force");
-                }
-            }
-
             if (curPlayer.getInventory().contains(ModTags.Items.SOUL)) { //checks if they have soul
                 int slot = 0;
                 for (int s = 0; 0 <= curPlayer.getInventory().size(); s++) {
@@ -65,15 +61,38 @@ public abstract class PlayerMixin extends LivingEntity {
         }
     }
 
-    @Inject(method = "damage", at = @At(value = "RETURN"))
+    @Inject(method = "damage", at = @At(value = "TAIL"))
     public void checkHealth(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if (player instanceof PlayerEntity curPlayer  && curPlayer.getHealth() - amount < 11) {
+        if (player instanceof PlayerEntity curPlayer && curPlayer.getHealth() < 11) {
             if (!curPlayer.getWorld().isClient) {
                 CommandManager manager = curPlayer.getServer().getCommandManager();
-                //TheArchitectExperiment.LOGGER.info("particle");
                 manager.executeWithPrefix(curPlayer.getServer().getCommandSource(), "particle dust{color:[255.0,0.0,0.0],scale:1} " +
                         curPlayer.getX() + " " + (curPlayer.getY() + 0.800) + " " + curPlayer.getZ() + " 0.3 0.8 0.3 0.1 15 force");
             }
+        }
+    }
+
+    @Inject(method = "attack", at = @At(value = "HEAD"))
+    public void attackWithExecutioner(Entity target, CallbackInfo ci) {
+        if (target.isAttackable()) {
+            TheArchitectExperiment.LOGGER.info("attack1");
+            if (!target.handleAttack(this)) {
+                TheArchitectExperiment.LOGGER.info("attack2");
+                if (this.getEquippedStack(EquipmentSlot.MAINHAND).getItem().equals(ModItems.SELF_DAMAGE_AXE)) {
+                    //ItemStack axe = this.getEquippedStack(EquipmentSlot.MAINHAND);
+                    DamageSource targeteddmg = new DamageSource(this.getWorld().getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(ModDamageSources.EXECUTIONER_TARGETED));
+                    DamageSource selfdmg = new DamageSource(this.getWorld().getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(ModDamageSources.EXECUTIONER_SELF));
+
+                    if (this.getAttackCooldownProgress(1) == 1.0) {
+                        target.damage(targeteddmg, 12.0f);
+                        this.damage(selfdmg, 8.0f);
+                    } else {
+                        target.damage(targeteddmg, 1.0f);
+                        this.damage(selfdmg, 1.0f);
+                    }
+                }
+            }
+            TheArchitectExperiment.LOGGER.info("attack3");
         }
     }
 
