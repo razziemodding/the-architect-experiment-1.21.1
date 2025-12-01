@@ -40,7 +40,6 @@ public class TheArchitectExperiment implements ModInitializer {
         kill sublmity
         bugs:
         	fix axe spam
-        	fix/rework health amul;et to use a better way of giving heatlh
     */
 	@Override
 	public void onInitialize() {
