@@ -14,6 +14,14 @@
   "block.archexp.omni_void_block": "Unbreakable Void Block",
   "block.archexp.void_block": "Void Block",
   "block.archexp.white_void_block": "White Void Block",
+  "block.archexp.red_void_block": "Red Void Block",
+  "block.archexp.blue_void_block": "Blue Void Block",
+  "block.archexp.gray_void_block": "Gray Void Block",
+  "block.archexp.purple_void_block": "Purple Void Block",
+  "block.archexp.orange_void_block": "Orange Void Block",
+  "block.archexp.yellow_void_block": "Yellow Void Block",
+
+
 
   "effect.archexp.soul_phased": "Soul Phased",
   "effect.archexp.void_touched": "����",
@@ -27,11 +35,12 @@
   "container.archexp.market": "Marketplace",
 
   "death.attack.executioner_self": "%s drained themselves of all force",
-  "death.attack.executioner_self.player": "%s drained themselves of force whilst trying to slay %s",
-  "death.attack.executioner_targeted.player": "%s was smitten by %s",
-  "death.attack.executioner_targeted.item": "%s was smitten by %s using %s",
+  "death.attack.executioner_self.player": "%s drained themselves of force whilst trying to smite %s",
+  "death.attack.executioner_targeted": "%s was smitten by The Executioner",
 
   "tag.item.archexp.soul": "Soul Amulet",
   "tag.item.archexp.amulets": "Amulets",
-  "tag.item.archexp.market_first_input_valid_extr": "���"
+  "tag.item.archexp.market_first_input_valid_extr": "���",
+  "tag.item.archexp.marketplace_tradable": "���",
+  "tag.item.archexp.crops": "���"
 }

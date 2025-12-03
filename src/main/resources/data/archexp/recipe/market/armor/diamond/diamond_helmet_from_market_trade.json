@@ -12,9 +12,9 @@
       "minecraft:enchantments": {
         "minecraft:protection": 4,
         "minecraft:unbreaking": 3,
-        "minecraft:mending": 1,
         "minecraft:respiration": 3,
-        "minecraft:aqua_affinity": 1
+        "minecraft:aqua_affinity": 1,
+        "minecraft:mending": 1
       }
     },
     "count": 1
