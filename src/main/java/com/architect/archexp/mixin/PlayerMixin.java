@@ -9,10 +9,12 @@ import com.architect.archexp.util.ModTags;
 import net.minecraft.entity.*;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.command.CommandManager;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -50,7 +52,7 @@ public abstract class PlayerMixin extends LivingEntity {
                 }
                 ItemStack soulItem = curPlayer.getInventory().getStack(slot);
 
-                if (soulItem.get(ModComponents.SOUL_AMULET_ACTIVE).equals(true)) { //if its active, make it not
+                if (soulItem.get(ModComponents.SOUL_AMULET_ACTIVE).equals(true)) { //if it is active, make it not
                     TheArchitectExperiment.removeSoulEffects(curPlayer, soulItem);
 
                     curPlayer.getItemCooldownManager().set(soulItem.getItem(), 360); //45-second cooldown
@@ -75,11 +77,12 @@ public abstract class PlayerMixin extends LivingEntity {
     @Inject(method = "attack", at = @At(value = "HEAD"))
     public void attackWithExecutioner(Entity target, CallbackInfo ci) {
         if (target.isAttackable()) {
-            TheArchitectExperiment.LOGGER.info("attack1");
+            //TheArchitectExperiment.LOGGER.info("attack1");
             if (!target.handleAttack(this)) {
-                TheArchitectExperiment.LOGGER.info("attack2");
+                //TheArchitectExperiment.LOGGER.info("attack2");
                 if (this.getEquippedStack(EquipmentSlot.MAINHAND).getItem().equals(ModItems.SELF_DAMAGE_AXE)) {
                     //ItemStack axe = this.getEquippedStack(EquipmentSlot.MAINHAND);
+                    TheArchitectExperiment.LOGGER.info("axe");
                     DamageSource targeteddmg = new DamageSource(this.getWorld().getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(ModDamageSources.EXECUTIONER_TARGETED));
                     DamageSource selfdmg = new DamageSource(this.getWorld().getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(ModDamageSources.EXECUTIONER_SELF));
 
@@ -106,6 +109,25 @@ public abstract class PlayerMixin extends LivingEntity {
             user.getItemCooldownManager().set(item.getItem(), 360);
         } else if (item.getItem().equals(ModItems.HEALTH_AMULET)) {
             player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(20.0);
+        }
+    }
+
+    @Inject(method = "onKilledOther", at = @At("HEAD"))
+    public void onKilledOtherMixin(ServerWorld world, LivingEntity other, CallbackInfoReturnable<Boolean> cir) {
+        if (other instanceof PlayerEntity othPlr) {
+            if (!othPlr.hasStatusEffect(ModEffects.GUILT)) {
+                if (player.getEquippedStack(EquipmentSlot.MAINHAND).getItem().equals(ModItems.KARMA_BLADE)) {
+                    double curHealth = player.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH);
+                    player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(curHealth - 2);
+                }
+                player.addStatusEffect(new StatusEffectInstance(ModEffects.GUILT, 86400, 0, true, false));
+            } else if (othPlr.hasStatusEffect(ModEffects.GUILT)) {
+                othPlr.removeStatusEffect(ModEffects.GUILT);
+                if (player.getEquippedStack(EquipmentSlot.MAINHAND).getItem().equals(ModItems.KARMA_BLADE)) {
+                    double curHealth = player.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH);
+                    player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(curHealth + 2);
+                }
+            }
         }
     }
 }

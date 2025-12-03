@@ -1,6 +1,5 @@
-package com.architect.archexp.effect;
+package com.architect.archexp.effect.custom;
 
-import com.architect.archexp.TheArchitectExperiment;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffect;
@@ -13,7 +12,7 @@ public class VoidTouchedEffect extends StatusEffect {
     private BlockPos playerReturnPos;
     private LivingEntity playerReturnEntity;
 
-    protected VoidTouchedEffect(StatusEffectCategory category, int color) {
+    public VoidTouchedEffect(StatusEffectCategory category, int color) {
         super(category, color);
     }
 

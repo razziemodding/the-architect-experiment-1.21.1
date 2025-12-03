@@ -1,4 +1,4 @@
-package com.architect.archexp.effect;
+package com.architect.archexp.effect.custom;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;

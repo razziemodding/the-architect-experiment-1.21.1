@@ -9,6 +9,8 @@
   "item.archexp.void_teleporter": "Void Gate",
 
   "item.archexp.self_damage_axe": "The Executioner",
+  "item.archexp.karma_blade": "Karma Blade",
+
 
   "block.archexp.marketplace": "Marketplace",
   "block.archexp.omni_void_block": "Unbreakable Void Block",
@@ -22,9 +24,9 @@
   "block.archexp.yellow_void_block": "Yellow Void Block",
 
 
-
   "effect.archexp.soul_phased": "Soul Phased",
   "effect.archexp.void_touched": "����",
+
 
   "sound.archexp.bolt_amulet_use": "Bolt Amulet used",
   "sound.archexp.might_amulet_use": "Might Amulet used",
@@ -32,11 +34,17 @@
   "sound.archexp.wind_amulet_use": "Wind Amulet used",
   "sound.archexp.health_amulet_use": "Health Amulet used",
 
+
   "container.archexp.market": "Marketplace",
+
 
   "death.attack.executioner_self": "%s drained themselves of all force",
   "death.attack.executioner_self.player": "%s drained themselves of force whilst trying to smite %s",
   "death.attack.executioner_targeted": "%s was smitten by The Executioner",
+
+  "death.attack.karmic_sin": "%s was unjustly slain by %s",
+  "death.attack.karmic_sin.item": "%s was unjustly slain by %s using %s",
+
 
   "tag.item.archexp.soul": "Soul Amulet",
   "tag.item.archexp.amulets": "Amulets",

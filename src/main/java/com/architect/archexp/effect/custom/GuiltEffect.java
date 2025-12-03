@@ -1,4 +1,4 @@
-package com.architect.archexp.effect;
+package com.architect.archexp.effect.custom;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
@@ -7,7 +7,7 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 
 public class GuiltEffect extends StatusEffect { //also doesnt really do anything just to track whos killed another player
 
-    protected GuiltEffect(StatusEffectCategory category, int color) {
+    public GuiltEffect(StatusEffectCategory category, int color) {
         super(category, color);
     }
 

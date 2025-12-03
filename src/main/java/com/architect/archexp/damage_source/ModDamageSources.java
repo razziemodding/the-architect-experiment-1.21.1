@@ -13,4 +13,7 @@ public class ModDamageSources {
 
     public static final RegistryKey<DamageType> EXECUTIONER_TARGETED =
             RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of(TheArchitectExperiment.MOD_ID, "executioner_targeted"));
+
+    public static final RegistryKey<DamageType> KARMIC_SIN =
+            RegistryKey.of(RegistryKeys.DAMAGE_TYPE, Identifier.of(TheArchitectExperiment.MOD_ID, "karmic_sin"));
 }

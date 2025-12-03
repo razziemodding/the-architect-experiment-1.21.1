@@ -1,6 +1,9 @@
 package com.architect.archexp.effect;
 
 import com.architect.archexp.TheArchitectExperiment;
+import com.architect.archexp.effect.custom.GuiltEffect;
+import com.architect.archexp.effect.custom.SoulPhasedEffect;
+import com.architect.archexp.effect.custom.VoidTouchedEffect;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.registry.Registries;
@@ -15,6 +18,9 @@ public class ModEffects {
 
     public static final RegistryEntry<StatusEffect> SOUL_PHASED = registerStatusEffect("soul_phased",
             new SoulPhasedEffect(StatusEffectCategory.BENEFICIAL, 0x83DEDA));
+
+    public static final RegistryEntry<StatusEffect> GUILT = registerStatusEffect("guilt",
+            new GuiltEffect(StatusEffectCategory.HARMFUL, 0x484343));
 
     private static RegistryEntry<StatusEffect> registerStatusEffect(String name, StatusEffect effect) {
         return Registry.registerReference(Registries.STATUS_EFFECT, Identifier.of(TheArchitectExperiment.MOD_ID, name), effect);
