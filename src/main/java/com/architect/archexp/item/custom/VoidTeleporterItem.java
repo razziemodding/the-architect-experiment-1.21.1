@@ -58,7 +58,7 @@ public class VoidTeleporterItem extends Item {
             ServerCommandSource source = user.getServer().getCommandSource();
             if (entity instanceof ServerPlayerEntity targetPlayer && user.isSneaking() ) {
                 if (!currentDimension.getNamespace().equals("archexp")) { /// in void
-                    entity.addStatusEffect(new StatusEffectInstance(ModEffects.VOID_TOUCHED, 600, 0, false, true));
+                    entity.addStatusEffect(new StatusEffectInstance(ModEffects.VOID_TOUCHED, 1200, 0, false, true));
                     manager.executeWithPrefix(source, "execute in archexp:void run teleport " + entity.getName().getString() + " 0 6 0");
                     user.getItemCooldownManager().set(this, 40); //2 sec
 
