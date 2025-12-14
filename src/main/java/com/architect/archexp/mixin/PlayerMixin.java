@@ -40,7 +40,7 @@ public abstract class PlayerMixin extends LivingEntity {
 
     @Inject(method = "damage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;damage(Lnet/minecraft/entity/damage/DamageSource;F)Z"))
     public void onHit(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
-        if (player instanceof PlayerEntity curPlayer) {
+        if (player instanceof PlayerEntity curPlayer) { //soul invis remover if damage
             if (curPlayer.getInventory().contains(ModTags.Items.SOUL)) { //checks if they have soul
                 int slot = 0;
                 for (int s = 0; 0 <= curPlayer.getInventory().size(); s++) {
@@ -66,7 +66,7 @@ public abstract class PlayerMixin extends LivingEntity {
     @Inject(method = "damage", at = @At(value = "TAIL"))
     public void checkHealth(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (player instanceof PlayerEntity curPlayer && curPlayer.getHealth() < 11) {
-            if (!curPlayer.getWorld().isClient) {
+            if (!curPlayer.getWorld().isClient) { //particle spawner
                 CommandManager manager = curPlayer.getServer().getCommandManager();
                 manager.executeWithPrefix(curPlayer.getServer().getCommandSource(), "particle dust{color:[255.0,0.0,0.0],scale:1} " +
                         curPlayer.getX() + " " + (curPlayer.getY() + 0.800) + " " + curPlayer.getZ() + " 0.3 0.8 0.3 0.1 15 force");
@@ -77,25 +77,21 @@ public abstract class PlayerMixin extends LivingEntity {
     @Inject(method = "attack", at = @At(value = "HEAD"))
     public void attackWithExecutioner(Entity target, CallbackInfo ci) {
         if (target.isAttackable()) {
-            //TheArchitectExperiment.LOGGER.info("attack1");
-            if (!target.handleAttack(this)) {
-                //TheArchitectExperiment.LOGGER.info("attack2");
-                if (this.getEquippedStack(EquipmentSlot.MAINHAND).getItem().equals(ModItems.SELF_DAMAGE_AXE)) {
+            if (!target.handleAttack(this)) { //not attacking self?
+                if (this.getEquippedStack(EquipmentSlot.MAINHAND).getItem().equals(ModItems.SELF_DAMAGE_AXE)) { //have axe?
                     //ItemStack axe = this.getEquippedStack(EquipmentSlot.MAINHAND);
-                    TheArchitectExperiment.LOGGER.info("axe");
                     DamageSource targeteddmg = new DamageSource(this.getWorld().getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(ModDamageSources.EXECUTIONER_TARGETED));
                     DamageSource selfdmg = new DamageSource(this.getWorld().getRegistryManager().get(RegistryKeys.DAMAGE_TYPE).entryOf(ModDamageSources.EXECUTIONER_SELF));
 
-                    if (this.getAttackCooldownProgress(1) == 1.0) {
+                    if (this.getAttackCooldownProgress(1) == 1.0) { //ready to attack?
                         target.damage(targeteddmg, 12.0f);
                         this.damage(selfdmg, 8.0f);
-                    } else {
+                    } else { //not ready to attack
                         target.damage(targeteddmg, 1.0f);
                         this.damage(selfdmg, 1.0f);
                     }
                 }
             }
-            TheArchitectExperiment.LOGGER.info("attack3");
         }
     }
 
@@ -115,13 +111,13 @@ public abstract class PlayerMixin extends LivingEntity {
     @Inject(method = "onKilledOther", at = @At("HEAD"))
     public void onKilledOtherMixin(ServerWorld world, LivingEntity other, CallbackInfoReturnable<Boolean> cir) {
         if (other instanceof PlayerEntity othPlr) {
-            if (!othPlr.hasStatusEffect(ModEffects.GUILT)) {
+            if (!othPlr.hasStatusEffect(ModEffects.GUILT)) { //doesnt have guilt? increase damage dealt
                 if (player.getEquippedStack(EquipmentSlot.MAINHAND).getItem().equals(ModItems.KARMA_BLADE)) {
                     double curHealth = player.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH);
                     player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH).setBaseValue(curHealth - 2);
                 }
                 player.addStatusEffect(new StatusEffectInstance(ModEffects.GUILT, 86400, 0, true, false));
-            } else if (othPlr.hasStatusEffect(ModEffects.GUILT)) {
+            } else if (othPlr.hasStatusEffect(ModEffects.GUILT)) { //has guilt
                 othPlr.removeStatusEffect(ModEffects.GUILT);
                 if (player.getEquippedStack(EquipmentSlot.MAINHAND).getItem().equals(ModItems.KARMA_BLADE)) {
                     double curHealth = player.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH);

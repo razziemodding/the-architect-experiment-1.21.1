@@ -31,15 +31,9 @@ public class TheArchitectExperiment implements ModInitializer {
       todo:
       	weapons -
       		skeletal scale
-      		karma blade -
-      			guilt effect
-      			3 billion mixins
         other items -
             potential building tool
         make kai a cool item
-        kill sublmity
-        bugs:
-        	fix axe spam
     */
 	@Override
 	public void onInitialize() {

@@ -21,20 +21,16 @@ public class ArmorRendererMixin<T extends LivingEntity, M extends BipedEntityMod
 
     @Inject(method = "renderArmor", at = @At("HEAD"), cancellable = true)
     public void noSoulRender(MatrixStack matrices, VertexConsumerProvider vertexConsumers, T entity, EquipmentSlot armorSlot, int light, A model, CallbackInfo ci) {
-        //TheArchitectExperiment.LOGGER.info("mixin");
         if (entity instanceof PlayerEntity player && player.getInventory().contains(ModTags.Items.SOUL)) {
-            //TheArchitectExperiment.LOGGER.info("if1");
             ItemStack stack = ItemStack.EMPTY;
             for (int s = 0; 0 <= player.getInventory().size(); s++) {
                 stack = player.getInventory().getStack(s);
                 if (!stack.isEmpty() && stack.getItem().equals(ModItems.SOUL_AMULET)) {
-                    //TheArchitectExperiment.LOGGER.info("if2");
                     break;
                 }
             }
 
             if (!stack.isEmpty() && stack.get(ModComponents.SOUL_AMULET_ACTIVE).equals(true)) {
-                //TheArchitectExperiment.LOGGER.info("if3");
                 ci.cancel();
             }
         }
