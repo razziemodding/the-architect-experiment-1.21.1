@@ -2,6 +2,7 @@ package com.architect.archexp.block;
 
 import com.architect.archexp.TheArchitectExperiment;
 import com.architect.archexp.block.custom.MarketBlock;
+import com.architect.archexp.block.custom.VoidTeleporterBlock;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -13,8 +14,13 @@ import net.minecraft.util.Identifier;
 
 public class ModBlocks {
 
-    public static final Block MARKETPLACE_BLOCK = registerBlock("marketplace", new MarketBlock(AbstractBlock.Settings.create().hardness(15f).strength(-1.0F, 3600000.0F)), true);
-
+    public static final Block MARKETPLACE_BLOCK = registerBlock("marketplace",
+            new MarketBlock(AbstractBlock.Settings
+                    .create()
+                    .hardness(15f)
+                    .strength(-1.0F, 3600000.0F)
+            ), true
+    );
     public static final Block OMNI_VOID_BLOCK = registerBlock("omni_void_block",
             new Block(AbstractBlock.Settings
                     .create()
@@ -84,6 +90,16 @@ public class ModBlocks {
                     .luminance(state -> 15)
             ), true
     );
+    public static final Block VOID_TELEPORTER_BLOCK = registerBlock("void_teleporter_block",
+            new VoidTeleporterBlock(AbstractBlock.Settings
+                    .create()
+                    .strength(-1.0F, 3600000.0F)
+                    .noCollision()
+                    .nonOpaque()
+            ), true
+    );
+
+
     public static Block registerBlock(String name, Block block, boolean makeItem) {
         if (makeItem) {
             registerBlockItem(name, block);
