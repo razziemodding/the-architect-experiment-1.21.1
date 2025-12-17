@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "archexp:executioner_targeted",
+    "archexp:executioner_self"
+  ]
+}
