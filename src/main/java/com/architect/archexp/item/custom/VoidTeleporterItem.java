@@ -13,6 +13,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class VoidTeleporterItem extends Item {
@@ -64,8 +65,9 @@ public class VoidTeleporterItem extends Item {
 
                     return ActionResult.SUCCESS;
                 } else if (targetPlayer.getSpawnPointPosition() != null) { /// not in void, no bed
+                    BlockPos plrSpawnPos = targetPlayer.getSpawnPointPosition();
                     manager.executeWithPrefix(source, "execute in minecraft:overworld run teleport " + entity.getName().getString() +
-                            " " + targetPlayer.getSpawnPointPosition().getX() + " " + targetPlayer.getSpawnPointPosition().getY() + " " + targetPlayer.getSpawnPointPosition().getZ());
+                            " " + plrSpawnPos.getX() + " " + plrSpawnPos.getY() + " " + plrSpawnPos.getZ());
                     user.getItemCooldownManager().set(this, 140); //7sec
 
                     return ActionResult.SUCCESS;
