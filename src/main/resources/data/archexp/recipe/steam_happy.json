@@ -3,14 +3,17 @@
   "category": "misc",
   "key": {
     "Y": {
-      "item": "minecraft:yellow_wool"
+      "item": "minecraft:gold_block"
     },
     "D": {
-      "item": "minecraft:diamond"
+      "item": "minecraft:diamond_block"
+    },
+    "N": {
+      "item": "minecraft:netherite_ingot"
     }
   },
   "pattern": [
-    "YYY",
+    "YNY",
     "YDY",
     "YYY"
   ],
