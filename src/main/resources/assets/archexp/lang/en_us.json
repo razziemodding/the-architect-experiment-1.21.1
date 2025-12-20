@@ -44,7 +44,7 @@
   "death.attack.executioner_self.player": "%s drained themselves of force whilst trying to smite %s",
   "death.attack.executioner_targeted": "%s was smitten by The Executioner",
 
-  "death.attack.karmic_sin": "%s was unjustly slain by %s",
+  "death.attack.karmic_sin.player": "%s was unjustly slain by %s",
   "death.attack.karmic_sin.item": "%s was unjustly slain by %s using %s",
 
 
