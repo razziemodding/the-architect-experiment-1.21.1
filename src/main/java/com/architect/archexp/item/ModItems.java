@@ -48,7 +48,9 @@ public class ModItems {
                     .rarity(Rarity.EPIC)
                     .maxCount(1)));
     public static final Item KARMA_BLADE = registerItem("karma_blade", new KarmaBlade(ToolMaterials.NETHERITE,
-            new Item.Settings().attributeModifiers(SwordItem.createAttributeModifiers(ToolMaterials.NETHERITE, 4, -2.3f))));
+            new Item.Settings().attributeModifiers(SwordItem.createAttributeModifiers(ToolMaterials.NETHERITE, 4, -2.3f))
+                    .rarity(Rarity.EPIC)
+                    .maxCount(1)));
 
     //steamhappy
     public static final Item STEAM_HAPPY = registerItem("steam_happy", new Item(new Item.Settings()
