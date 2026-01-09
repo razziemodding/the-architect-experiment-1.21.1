@@ -28,5 +28,11 @@
     "sounds": [
       "archexp:health_amulet_use"
     ]
+  },
+  "skeletal_scale_use": {
+    "subtitle": "sound.archexp.skeletal_scale_use",
+    "sounds": [
+      "archexp:skeletal_scale_use"
+    ]
   }
 }

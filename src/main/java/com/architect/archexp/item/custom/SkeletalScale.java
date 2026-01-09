@@ -1,10 +1,9 @@
 package com.architect.archexp.item.custom;
 
-import com.architect.archexp.damage_source.ModDamageSources;
+import com.architect.archexp.sound.ModSounds;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageSources;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -12,6 +11,7 @@ import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.command.CommandManager;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 
@@ -32,6 +32,7 @@ public class SkeletalScale extends SwordItem {
             entity.damage(source, 4);
             user.getItemCooldownManager().set(this, 45);
             stack.damage((int) (stack.getMaxDamage() * 0.013), user, EquipmentSlot.MAINHAND);
+            user.getWorld().playSound(null, user.getBlockPos(), ModSounds.SKELETAL_SCALE_USE, SoundCategory.PLAYERS, 1f, 1f);
             return ActionResult.SUCCESS;
         }
         return super.useOnEntity(stack, user, entity, hand);
