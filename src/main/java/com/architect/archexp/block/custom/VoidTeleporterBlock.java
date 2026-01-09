@@ -26,12 +26,14 @@ public class VoidTeleporterBlock extends Block {
             if (!world.getRegistryKey().getValue().getNamespace().equals("archexp")) {
                 manager.executeWithPrefix(world.getServer().getCommandSource(),
                         "execute in archexp:void run teleport " +
-                                entity.getName().getString() + " 120.5 137 488.5");
+                                entity.getName().getString() + " 0 6 0");
             } else {
                 manager.executeWithPrefix(world.getServer().getCommandSource(),
-                        "execute in minecraft:overworld run teleport " +
-                                entity.getName().getString() + " " +
-                                world.getSpawnPos().getX() + " " + world.getSpawnPos().getY() + " " + world.getSpawnPos().getZ());
+                        "execute in archexp:void run teleport " +
+                                entity.getName().getString() + " 0 6 0");
+                manager.executeWithPrefix(world.getServer().getCommandSource(),
+                        "execute at " + entity.getNameForScoreboard() + " run title " + entity.getNameForScoreboard()
+                                + " title [{\"text\":\"There is no escape.\",\"bold\":true,\"color\":\"dark_red\"}]");
             }
         }
     }
